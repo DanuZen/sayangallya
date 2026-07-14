@@ -7,9 +7,9 @@ Dokumen ini berfungsi sebagai "lembar kerja" (worksheet) bagi Anda untuk mengump
 ## 1. 🏠 Hero Section (Halaman Utama)
 
 Bagian ini adalah kesan pertama saat website dibuka.
-- **Judul Utama (H1):** *[Contoh: "Perjalanan Kita", "Happy Anniversary Sayang", atau Nama Panggilan]*
-- **Sub-judul (H2/P):** *[Contoh: "Menghitung setiap detik bersamamu adalah hal terbaik dalam hidupku..."]*
-- **Tanggal Jadian (Start Date):** *[Format YYYY-MM-DD, misal: 2021-08-14]*
+- **Judul Utama (H1):** The Journey Of Us
+- **Sub-judul (H2/P):** "Every second with you is a blessing."
+- **Tanggal Jadian (Start Date):** 2023-09-20
 - **Nama File Foto Hero Utama:** *[Contoh: hero-bg.webp]*
 
 ---
