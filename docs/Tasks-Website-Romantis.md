@@ -6,14 +6,14 @@ Checklist ini disusun berurutan sesuai fase pengembangan. Kerjakan dari atas ke 
 
 ## 🔴 Fase 0 — Persiapan (Sebelum Coding)
 
-- [ ] Tentukan nama domain/judul website (misal: "Perjalanan Kita", nama panggilan berdua, dll)
+- [x] Tentukan nama domain/judul website (misal: "Perjalanan Kita", nama panggilan berdua, dll)
 - [ ] Kumpulkan foto-foto yang akan dipakai (hero, timeline, envelope background) — kompres ke WebP
 - [ ] Kumpulkan data momen penting untuk Love Timeline (tanggal + judul + deskripsi singkat)
 - [ ] Tulis 5–10 pesan untuk Secret Messages
 - [ ] Tulis daftar Bucket List (minimal 5–10 item)
 - [ ] Pilih 3–5 lagu bermakna + siapkan file audio (atau link Spotify/YouTube)
-- [ ] Buat akun Supabase (jika belum) dan buat project baru
-- [ ] Buat akun Vercel (jika belum) dan hubungkan ke GitHub
+- [x] Buat akun Supabase (jika belum) dan buat project baru
+- [x] Buat akun Vercel (jika belum) dan hubungkan ke GitHub
 
 ---
 
