@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #FFFDF9;
+  --color-foreground: #3D3D3D;
+  
+  --color-cream: #FFFDF9;
+  --color-peach: #FFF8F0;
+  --color-blush: #F7C6D9;
+  --color-rose: #E88CA8;
+  --color-lavender: #E8DFF5;
+  --color-peachglow: #FDE2D0;
+  --color-sage: #DCE8DD;
+  --color-charcoal: #3D3D3D;
+  --color-graytext: #8A8A8A;
+  --color-bordergray: #EDE6E0;
+
+  --font-playfair: var(--font-playfair);
+  --font-poppins: var(--font-poppins);
+  --font-dancing: var(--font-dancing);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-poppins), Arial, sans-serif;
+}
+
+/* === Decorative Background Patterns === */
+
+/* Tiny dots pattern */
+.bg-dots {
+  background-image: radial-gradient(circle, rgba(232,140,168,0.15) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Diagonal cross-hatch */
+.bg-crosshatch {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(232,140,168,0.05) 0px,
+      rgba(232,140,168,0.05) 1px,
+      transparent 1px,
+      transparent 12px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(232,140,168,0.05) 0px,
+      rgba(232,140,168,0.05) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+}
+
+/* Subtle circle pattern */
+.bg-circles {
+  background-image: radial-gradient(circle at 25% 25%, rgba(232,140,168,0.08) 0%, transparent 60%),
+    radial-gradient(circle at 75% 75%, rgba(232,213,240,0.12) 0%, transparent 60%);
+}
+
+/* Floating petal shapes (CSS only) — decorative corner flourish */
+.corner-flourish::before,
+.corner-flourish::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.07;
+}
+
+.corner-flourish::before {
+  top: -100px;
+  left: -100px;
+  background: radial-gradient(circle, #E88CA8 0%, transparent 70%);
+}
+
+.corner-flourish::after {
+  bottom: -100px;
+  right: -100px;
+  background: radial-gradient(circle, #C5A8E0 0%, transparent 70%);
+}

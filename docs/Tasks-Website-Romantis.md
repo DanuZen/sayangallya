@@ -19,11 +19,11 @@ Checklist ini disusun berurutan sesuai fase pengembangan. Kerjakan dari atas ke 
 
 ## 🔴 Fase 1 — Setup Project
 
-- [ ] Buka Claude, buat project baru Next.js + Tailwind CSS
-- [ ] Setup struktur folder sesuai rekomendasi di PRD (`components/`, `lib/`, `public/`)
-- [ ] Install dependency tambahan: `framer-motion`, `@supabase/supabase-js`, `lucide-react`
-- [ ] Setup Google Fonts (Playfair Display + Poppins) di `layout.tsx`
-- [ ] Tambahkan warna custom ke `tailwind.config.ts` sesuai Style Guide
+- [x] Buka Claude, buat project baru Next.js + Tailwind CSS
+- [x] Setup struktur folder sesuai rekomendasi di PRD (`components/`, `lib/`, `public/`)
+- [x] Install dependency tambahan: `framer-motion`, `@supabase/supabase-js`, `lucide-react`
+- [x] Setup Google Fonts (Playfair Display + Poppins) di `layout.tsx`
+- [x] Tambahkan warna custom ke `tailwind.config.ts` sesuai Style Guide
 - [ ] Push project awal ke GitHub
 - [ ] Deploy awal ke Vercel (pastikan halaman default Next.js muncul, sebagai tes koneksi)
 
@@ -31,12 +31,12 @@ Checklist ini disusun berurutan sesuai fase pengembangan. Kerjakan dari atas ke 
 
 ## 🔴 Fase 2 — Hero Section & Relationship Timer
 
-- [ ] Buat komponen `HeroSection.tsx` dengan background foto + overlay gradient pastel
-- [ ] Tambahkan judul (H1) dan sub-teks singkat di Hero
-- [ ] Buat komponen `RelationshipTimer.tsx` (Tahun/Bulan/Hari/Jam/Menit/Detik)
-- [ ] Sambungkan tanggal jadian sebagai prop/konstanta (simpan di `.env.local` atau constants file)
-- [ ] Pastikan timer update tiap detik tanpa reload halaman
-- [ ] Test tampilan Hero Section di mobile & desktop
+- [x] Buat komponen `HeroSection.tsx` dengan background foto + overlay gradient pastel
+- [x] Tambahkan judul (H1) dan sub-teks singkat di Hero
+- [x] Buat komponen `RelationshipTimer.tsx` (Tahun/Bulan/Hari/Jam/Menit/Detik)
+- [x] Sambungkan tanggal jadian sebagai prop/konstanta (simpan di `.env.local` atau constants file)
+- [x] Pastikan timer update tiap detik tanpa reload halaman
+- [x] Test tampilan Hero Section di mobile & desktop
 - [ ] Deploy ulang ke Vercel, cek hasil live
 
 ---
