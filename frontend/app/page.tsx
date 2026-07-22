@@ -4,12 +4,13 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroSection from "@/components/HeroSection";
 import Timeline from "@/components/Timeline";
-import BucketList from "@/components/BucketList";
-import SecretMessages from "@/components/SecretMessages";
-import CoupleGames from "@/components/CoupleGames";
-import FloatingHearts from "@/components/FloatingHearts";
 import SplashScreen from "@/components/SplashScreen";
 import EnvelopeIntro from "@/components/EnvelopeIntro";
+import FloatingMusicPlayer from "@/components/FloatingMusicPlayer";
+import ChapterNavigator from "@/components/ChapterNavigator";
+import PhotoGallery from "@/components/PhotoGallery";
+import FloatingEnvelopes from "@/components/FloatingEnvelopes";
+import PaperPlaneNavigator from "@/components/PaperPlaneNavigator";
 
 type Stage = "envelope" | "splash" | "main";
 
@@ -17,8 +18,7 @@ export default function Home() {
   const [stage, setStage] = useState<Stage>("envelope");
 
   return (
-    <main className="min-h-screen relative bg-cream selection:bg-rose/20">
-
+    <main className="min-h-screen relative bg-maroon selection:bg-rose/20">
       {/* Stage 1: Envelope Opening Intro */}
       <AnimatePresence>
         {stage === "envelope" && (
@@ -41,11 +41,6 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Global Animated Particles */}
-            <div className="fixed inset-0 z-30 pointer-events-none">
-              <FloatingHearts />
-            </div>
-
             {/* Sticky Parallax Hero */}
             <div className="relative z-0 h-[100vh]">
               <div className="sticky top-0 h-screen w-full">
@@ -53,16 +48,24 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Content Sheet */}
-            <div className="relative z-20 bg-cream/95 backdrop-blur-md w-full rounded-t-[40px] md:rounded-t-[60px] shadow-[0_-15px_50px_rgba(0,0,0,0.08)] border-t border-white/60 pt-8 pb-10">
+            {/* Content — sections handle their own backgrounds */}
+            <div className="relative z-20 w-full">
               <Timeline />
-              <BucketList />
-              <SecretMessages />
-              <CoupleGames />
+              <PhotoGallery />
+              <ChapterNavigator />
             </div>
+            
+            {/* Floating Envelopes (Persists across the main page) */}
+            <FloatingEnvelopes />
+            
+            {/* Paper Plane Navigator (Scroll indicator) */}
+            <PaperPlaneNavigator />
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Floating Music Player (Persists across stages) */}
+      <FloatingMusicPlayer />
     </main>
   );
 }
