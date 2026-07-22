@@ -1,7 +1,7 @@
 "use client";
 
 import TimelineItem from "./TimelineItem";
-
+import { motion } from "framer-motion";
 // Dummy Data
 const dummyEvents = [
   {
@@ -28,26 +28,74 @@ const dummyEvents = [
 
 export default function Timeline() {
   return (
-    <section className="py-24 relative overflow-hidden corner-flourish" id="timeline"
-      style={{ background: 'linear-gradient(135deg, #FFF8F0 0%, #FFF3F8 50%, #F9F5FF 100%)' }}
+    <section
+      className="py-28 relative overflow-hidden"
+      id="timeline"
+      style={{ backgroundColor: "#F3EAE3" }}
     >
-      {/* Dot pattern overlay */}
-      <div className="absolute inset-0 bg-dots opacity-60 pointer-events-none" />
-      {/* Decorative large rose blurred circle top-right */}
-      <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-rose/10 blur-[80px] pointer-events-none" />
-      {/* Decorative lavender circle bottom-left */}
-      <div className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-lavender/20 blur-[100px] pointer-events-none" />
+      {/* Subtle paper texture */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+      }} />
+
       <div className="container mx-auto px-6 max-w-5xl relative z-10">
-        <div className="text-center mb-16">
-          <span className="font-dancing text-rose text-3xl mb-2 block drop-shadow-sm">Cerita Kita</span>
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-charcoal mb-4">Our Love Timeline</h2>
-          <p className="text-charcoal/70 font-poppins max-w-2xl mx-auto">Every beautiful moment we've shared, leading up to today.</p>
-        </div>
+        {/* Swan Agency–style stacked title */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="mb-24 md:mb-32 relative flex flex-col items-center justify-center text-center pt-10"
+        >
+          {/* Decorative Top Element */}
+          <div className="flex items-center gap-4 mb-4 opacity-70">
+            <div className="w-10 md:w-16 h-[1px] bg-[#4A1E2C]/30" />
+            <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#4A1E2C" strokeWidth={1.5} className="rotate-45">
+              <rect x="4" y="4" width="16" height="16" rx="1" />
+              <circle cx="12" cy="12" r="3" fill="#4A1E2C" opacity="0.5" />
+            </svg>
+            <div className="w-10 md:w-16 h-[1px] bg-[#4A1E2C]/30" />
+          </div>
+
+          {/* Title wrapper */}
+          <div className="relative inline-block mt-2">
+            {/* Teks 1 - outline stroke text, full section name */}
+            <h2 className="font-playfair font-bold leading-none tracking-[0.15em] select-none"
+              style={{ 
+                fontSize: "clamp(2.5rem, 7vw, 6rem)",
+                color: "transparent",
+                WebkitTextStroke: "2.5px rgba(74, 30, 44, 0.4)"
+              }}>
+              Our Timeline
+            </h2>
+            
+            {/* Teks 2 - script, smaller, bottom-right corner */}
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
+              className="font-dancing text-[#4A1E2C] drop-shadow-sm absolute -bottom-4 right-0"
+              style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)", lineHeight: 1 }}
+            >
+              Memories
+            </motion.div>
+          </div>
+          
+          {/* Subtitle with flanking lines */}
+          <div className="flex items-center justify-center mt-6 md:mt-10 w-full max-w-2xl px-4">
+            <div className="hidden md:block h-[1px] flex-1 bg-gradient-to-r from-transparent to-[#4A1E2C]/20" />
+            <p className="font-poppins text-[9px] md:text-xs tracking-[0.25em] md:tracking-[0.4em] uppercase text-[#4A1E2C]/50 relative z-10 px-4 md:px-8">
+              Every beautiful moment we've shared, leading up to today.
+            </p>
+            <div className="hidden md:block h-[1px] flex-1 bg-gradient-to-l from-transparent to-[#4A1E2C]/20" />
+          </div>
+        </motion.div>
 
         <div className="relative wrap overflow-hidden p-2 md:p-10 h-full">
-          {/* Vertical line */}
-          <div className="absolute border-opacity-20 border-rose h-full border-l-2 left-4 md:left-1/2 transform md:-translate-x-1/2 top-0"></div>
-          
+          {/* Vertical line — thin maroon */}
+          <div className="absolute h-full border-l border-[#4A1E2C]/20 left-4 md:left-1/2 transform md:-translate-x-1/2 top-0" />
+
           {dummyEvents.map((event, index) => (
             <TimelineItem key={event.id} event={event} index={index} />
           ))}
