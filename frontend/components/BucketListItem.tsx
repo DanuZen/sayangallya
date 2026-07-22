@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface BucketItem {
@@ -17,48 +16,52 @@ interface Props {
 export default function BucketListItem({ data }: Props) {
   const [isDone, setIsDone] = useState(data.is_done);
 
-  const toggleDone = () => {
-    setIsDone(!isDone);
-  };
-
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`flex items-start gap-4 p-5 rounded-[20px] transition-all duration-300 border ${
-        isDone 
-          ? 'bg-sage/30 border-sage/50 shadow-sm' 
-          : 'bg-white/80 border-bordergray shadow-sm hover:shadow-md'
-      }`}
+      onClick={() => setIsDone(!isDone)}
+      className="flex items-start gap-4 p-5 cursor-pointer transition-all duration-300 border-b group"
+      style={{ borderColor: "rgba(74,30,44,0.12)" }}
     >
-      <button 
-        onClick={toggleDone}
-        className={`mt-1 flex-shrink-0 w-7 h-7 rounded-full border-2 flex items-center justify-center transition-colors cursor-pointer ${
-          isDone 
-            ? 'bg-sage border-sage text-white' 
-            : 'border-rose/50 hover:border-rose text-transparent hover:text-rose/20'
-        }`}
+      {/* Checkbox — minimal maroon style */}
+      <div
+        className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-sm border-2 flex items-center justify-center transition-all duration-300"
+        style={{
+          borderColor: isDone ? "#4A1E2C" : "rgba(74,30,44,0.3)",
+          backgroundColor: isDone ? "#4A1E2C" : "transparent",
+        }}
       >
-        <Check size={16} strokeWidth={3} />
-      </button>
-      
+        {isDone && (
+          <motion.svg
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            width={12} height={12} viewBox="0 0 24 24"
+            fill="none" stroke="#F3EAE3" strokeWidth={3}
+            strokeLinecap="round" strokeLinejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </motion.svg>
+        )}
+      </div>
+
       <div className="flex-1">
-        <p className={`font-poppins text-[15px] leading-relaxed transition-all duration-300 ${
-          isDone ? 'text-charcoal/50 line-through decoration-rose/30' : 'text-charcoal'
-        }`}>
+        <p className={`font-poppins text-[15px] leading-relaxed transition-all duration-300 ${isDone ? "line-through" : ""}`}
+          style={{ color: isDone ? "rgba(74,30,44,0.35)" : "#4A1E2C" }}>
           {data.item}
         </p>
       </div>
-      
+
       {isDone && (
-        <motion.div 
-          initial={{ scale: 0 }} 
-          animate={{ scale: 1 }} 
-          className="flex-shrink-0 text-rose"
+        <motion.span
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="flex-shrink-0 font-dancing text-xl"
+          style={{ color: "#4A1E2C" }}
         >
-          <Heart size={20} fill="currentColor" />
-        </motion.div>
+          ✓
+        </motion.span>
       )}
     </motion.div>
   );
