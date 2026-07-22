@@ -160,9 +160,22 @@ create table secret_messages (
 
 ---
 
-### 6️⃣ Fitur Game (Fase 2 — Menyusul)
-**Deskripsi:** Game ringan seperti Kuis Hubungan atau Tebak Gambar Pasangan.
-**Status:** Belum dikerjakan di fase awal — akan dirinci lebih lanjut setelah fitur utama selesai.
+### 6️⃣ Fitur Game & Bucket List Terdedikasi
+**Deskripsi:** Halaman mandiri untuk daftar impian dan game ringan interaktif.
+**Komponen:**
+- `CoupleGames.tsx` — Komponen game interaktif (Kuis Hubungan, Tebak Gambar).
+- `app/game/page.tsx` & `app/bucket/page.tsx` — Routing terpisah untuk pengalaman yang lebih terfokus.
+
+---
+
+### 7️⃣ Navigasi Interaktif & Estetika Premium
+**Deskripsi:** Elemen global untuk meningkatkan UI/UX dan kesan romantis, sinematik, dan mewah.
+**Komponen:**
+- `FloatingMusicPlayer.tsx` — Pemutar musik mengambang dengan dukungan kontrol penuh di seluruh navigasi.
+- `ChapterNavigator.tsx` & `PaperPlaneNavigator.tsx` — Navigasi antar bab yang interaktif, *playful*, dan terintegrasi dengan scroll.
+- `FloatingEnvelopes.tsx` — Animasi amplop bertebaran yang melayang di background.
+- `PhotoGallery.tsx` — Galeri memori polaroid dengan transisi yang halus.
+- `SplashScreen.tsx` — Animasi pembuka bergaya memori polaroid.
 
 ---
 
@@ -171,25 +184,29 @@ create table secret_messages (
 ```
 love-website/
 ├── app/
-│   ├── page.tsx                 # Halaman utama (Hero)
-│   ├── timeline/page.tsx        # Halaman Love Timeline
-│   ├── bucket-list/page.tsx     # Halaman Bucket List
-│   └── messages/page.tsx        # Halaman Secret Messages
+│   ├── page.tsx                 # Halaman utama (Hero, Splash Screen, dll)
+│   ├── bucket/page.tsx          # Halaman khusus Bucket List
+│   ├── game/page.tsx            # Halaman khusus Couple Games
+│   └── layout.tsx               # Global navigators & music player
 ├── components/
 │   ├── HeroSection.tsx
+│   ├── SplashScreen.tsx
 │   ├── RelationshipTimer.tsx
-│   ├── Timeline.tsx
-│   ├── TimelineItem.tsx
-│   ├── BucketList.tsx
-│   ├── BucketListItem.tsx
-│   ├── SecretMessages.tsx
-│   ├── EnvelopeCard.tsx
-│   └── MusicPlayer.tsx
+│   ├── Timeline.tsx & TimelineItem.tsx
+│   ├── BucketList.tsx & BucketListItem.tsx
+│   ├── SecretMessages.tsx & EnvelopeCard.tsx
+│   ├── FloatingMusicPlayer.tsx
+│   ├── FloatingEnvelopes.tsx
+│   ├── ChapterNavigator.tsx
+│   ├── PaperPlaneNavigator.tsx
+│   ├── PhotoGallery.tsx
+│   └── CoupleGames.tsx
 ├── lib/
 │   └── supabaseClient.ts        # Inisialisasi Supabase client
 ├── public/
 │   ├── images/
-│   └── audio/
+│   ├── audio/
+│   └── plane.png
 ├── .env.local                   # Environment variables (JANGAN commit)
 ├── tailwind.config.ts
 └── package.json
@@ -228,8 +245,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=xxxxxxxxxxxxxxxx
 | **Fase 5** | Digital Bucket List | 🟠 Sedang |
 | **Fase 6** | Secret Messages | 🟠 Sedang |
 | **Fase 7** | Mini Music Player | 🟡 Rendah-Sedang |
-| **Fase 8** | Polish UI, animasi, testing responsif | 🟡 Sebelum launch |
-| **Fase 9 (opsional)** | Fitur Game (kuis/tebak gambar) | ⚪ Setelah semua di atas selesai |
+| **Fase 8** | Polish UI, animasi, testing responsif | 🟡 Selesai |
+| **Fase 9** | Fitur Game (kuis/tebak gambar) & Halaman Terpisah | 🟡 Selesai |
+| **Fase 10** | Refinement Estetika, Navigasi Premium (Paper Plane), & Floating Elements | 🟢 Selesai |
 
 ---
 
