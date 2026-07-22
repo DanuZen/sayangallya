@@ -20,26 +20,29 @@ Dokumen ini memetakan arsitektur komponen di **Next.js (App Router)**. Tujuannya
 ```text
 app/
 ├── layout.tsx (Server Component)
-│   └── Mengatur Font, Metadata dasar, Global Layout.
+│   ├── Mengatur Font, Metadata dasar, Global Layout.
+│   ├── <FloatingMusicPlayer /> (Client Component) -> Global music player
+│   └── <PaperPlaneNavigator /> / <ChapterNavigator /> (Client Component) -> Global navigations
 │
 ├── page.tsx (Server Component) -> [HALAMAN UTAMA]
-│   │
 │   ├── <HeroSection /> (Server Component)
-│   │   └── <RelationshipTimer startDate="..." /> (Client Component) -> Butuh useEffect/setInterval
-│   │
-│   ├── <TimelineWrapper /> (Server Component) -> Fetch data 'timeline_events' di server
-│   │   └── <TimelineList events={data} /> (Client Component) -> Animasi Framer Motion saat di-scroll
+│   │   └── <RelationshipTimer startDate="..." /> (Client Component)
+│   ├── <SplashScreen /> (Client Component) -> Animasi polaroid di awal
+│   ├── <FloatingEnvelopes /> (Client Component) -> Animasi background
+│   ├── <TimelineWrapper /> (Server Component)
+│   │   └── <TimelineList events={data} /> (Client Component)
 │   │       └── <TimelineItem /> (Client Component)
-│   │
-│   ├── <BucketListWrapper /> (Server Component) -> Fetch data 'bucket_list'
-│   │   └── <BucketList items={data} /> (Client Component) -> Butuh useState untuk toggle 'is_done'
-│   │       └── <BucketListItem /> (Client Component)
-│   │
-│   ├── <SecretMessagesWrapper /> (Server Component) -> Fetch data 'secret_messages'
-│   │   └── <MessagesGrid messages={data} /> (Client Component)
-│   │       └── <EnvelopeCard /> (Client Component) -> Animasi klik, buka, dan modal
-│   │
-│   └── <MusicPlayer audioSrc="..." /> (Client Component) -> Butuh akses ke tag <audio> dan state play/pause
+│   ├── <PhotoGallery /> (Client Component)
+│   └── <SecretMessagesWrapper /> (Server Component)
+│       └── <MessagesGrid messages={data} /> (Client Component)
+│           └── <EnvelopeCard /> (Client Component)
+│
+├── bucket/page.tsx (Server Component) -> [HALAMAN BUCKET LIST]
+│   └── <BucketList items={data} /> (Client Component)
+│       └── <BucketListItem /> (Client Component)
+│
+└── game/page.tsx (Server Component) -> [HALAMAN COUPLE GAMES]
+    └── <CoupleGames /> (Client Component)
 ```
 
 ---
