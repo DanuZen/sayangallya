@@ -67,48 +67,40 @@ export default function RelationshipTimer({ startDate }: Props) {
   ];
 
   return (
-    <div className="mt-12 mx-auto w-full max-w-4xl px-4 relative">
-      {/* Decorative background glow */}
-      <div className="absolute inset-0 bg-white/20 blur-3xl rounded-full z-0 pointer-events-none"></div>
-      
-      {/* Elegant Unified Glass Pane */}
+    <div className="mx-auto w-full relative">
+      {/* Seamless Editorial Timer (No Card Container) */}
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="relative z-10 grid grid-cols-3 md:grid-cols-6 gap-y-8 md:gap-y-0 bg-white/30 backdrop-blur-xl border border-white/60 rounded-[32px] p-6 shadow-2xl"
+        className="relative z-10 flex items-center justify-center gap-3 sm:gap-5 md:gap-7"
       >
         {timeBlocks.map((block, index) => (
-          <div key={block.label} className="relative flex flex-col items-center justify-center">
+          <div key={block.label} className="relative flex flex-col items-center justify-center px-1.5 sm:px-2.5">
             
             {/* Animated Number Wrapper */}
-            <div className="relative h-[48px] md:h-[60px] lg:h-[72px] w-full flex items-center justify-center overflow-hidden">
+            <div className="relative h-[36px] sm:h-[46px] md:h-[56px] min-w-[36px] sm:min-w-[48px] flex items-center justify-center overflow-hidden">
               <AnimatePresence mode="popLayout">
                 <motion.span
                   key={block.value}
-                  initial={{ y: 20, opacity: 0, filter: "blur(4px)" }}
+                  initial={{ y: 15, opacity: 0, filter: "blur(4px)" }}
                   animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                  exit={{ y: -20, opacity: 0, filter: "blur(4px)" }}
+                  exit={{ y: -15, opacity: 0, filter: "blur(4px)" }}
                   transition={{ duration: 0.4, type: "spring", stiffness: 200, damping: 20 }}
-                  className="absolute text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-charcoal drop-shadow-sm"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-[#4A1E2C] tracking-tight"
                 >
                   {String(block.value).padStart(2, '0')}
                 </motion.span>
               </AnimatePresence>
             </div>
 
-            <span className="text-[10px] md:text-[11px] text-rose font-poppins font-bold uppercase tracking-[0.25em] mt-2 opacity-90">
+            <span className="text-[8px] sm:text-[9px] md:text-[10px] text-[#E88CA8] font-poppins font-bold uppercase tracking-[0.22em] mt-1 opacity-90">
               {block.label}
             </span>
             
-            {/* Desktop Divider */}
+            {/* Elegant Divider between columns */}
             {index < timeBlocks.length - 1 && (
-              <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-[60%] bg-charcoal/10 rounded-full"></div>
-            )}
-            
-            {/* Mobile Divider (rows of 3) */}
-            {index % 3 !== 2 && (
-              <div className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-[60%] bg-charcoal/10 rounded-full"></div>
+              <div className="absolute -right-1 sm:-right-2.5 md:-right-3.5 top-1/2 -translate-y-1/2 w-[1px] h-[55%] bg-[#4A1E2C]/15 rounded-full" />
             )}
           </div>
         ))}
