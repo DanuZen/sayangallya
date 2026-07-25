@@ -135,6 +135,27 @@ Checklist ini disusun berurutan sesuai fase pengembangan. Kerjakan dari atas ke 
 
 ---
 
+## 🟣 Fase 11 — Estetika Ruang Kita & Penyelarasan Desain
+
+- [x] Penyelarasan warna kertas catatan Love Notes dengan kertas tiket Mimpi Kita (`#FAF5EF`)
+- [x] Transformasi roda Date Spinner menggunakan palet warna Pink Romantis & Rose Gold
+- [x] Penyelarasan skema warna Kuis Hubungan & Tebak Gambar ke Pink Romantis
+- [x] Eliminasi emotikon pada stempel status TERWUJUD untuk estetika fisik yang murni
+- [x] Perbaikan rendering 3D jarum peniti & klip kertas emas agar tampil 100% utuh tanpa terpotong (unclipped rule)
+- [x] Penyatuan warna aktif dock navigasi bawah menggunakan satu skema Burgundy Romantis (`#4A1E2C`) yang seragam
+- [x] Pembaruan dokumen `Style-Guide-Website-Romantis.md` dan `Tasks-Website-Romantis.md`
+
+---
+
+## 🔵 Fase 12 — Polish Visual, Konten & Responsivitas Mobile (Rencana Selanjutnya)
+
+- [ ] **Peningkatan Visual Landing Page**: Memperbagus estetika visual landing page terutama pada efek latar belakang (*background texture, gradient layering, & atmospheric elements*).
+- [ ] **Persiapan Konten Utama**: Menyiapkan dan merapikan seluruh isi data asli untuk *Timeline* dan galeri foto *Captured Moments*.
+- [ ] **Optimasi Responsif Mobile Total**: Menerapkan dan menyempurnakan tata letak di semua halaman agar 100% responsif dan nyaman di perangkat mobile tanpa mengubah sedikit pun tampilan desktop & tablet yang sudah presisi.
+- [ ] **Penyelarasan & Polish Tambahan**: Melakukan audit performa visual, kecepatan muat gambar, serta pengisian konten tambahan untuk penyempurnaan akhir.
+
+---
+
 ### 📌 Cara Pakai Checklist Ini
 1. Kerjakan satu section penuh sebelum pindah ke section berikutnya.
 2. Setiap poin bisa langsung dijadikan satu prompt ke Claude — tinggal sebutkan konteksnya (misal: "sesuai task Fase 4 di file Tasks, buatkan...").
