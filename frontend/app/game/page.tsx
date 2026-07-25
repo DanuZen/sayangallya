@@ -1,9 +1,5 @@
-import CoupleGames from "@/components/CoupleGames";
+import { redirect } from "next/navigation";
 
 export default function GamePage() {
-  return (
-    <main className="min-h-screen bg-[#F3EAE3]">
-      <CoupleGames />
-    </main>
-  );
+  redirect("/ruang-kita");
 }
