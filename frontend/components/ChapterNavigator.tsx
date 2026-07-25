@@ -2,27 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-
-const chapters = [
-  {
-    id: "bucket",
-    title: "Mimpi Kita",
-    subtitle: "Daftar janji dan rencana masa depan",
-    emoji: "✈️",
-    href: "/bucket",
-    color: "#E8DFF5",
-    textColor: "#3A2A45",
-  },
-  {
-    id: "game",
-    title: "Tebak-Tebakan",
-    subtitle: "Seberapa jauh kamu mengenalku?",
-    emoji: "🎲",
-    href: "/game",
-    color: "#FDE2D0",
-    textColor: "#5A3020",
-  }
-];
+import { Heart } from "lucide-react";
 
 export default function ChapterNavigator() {
   return (
@@ -33,7 +13,7 @@ export default function ChapterNavigator() {
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#F3EAE3] to-transparent z-10 pointer-events-none" />
 
       {/* Header */}
-      <div className="text-center mb-16 md:mb-24 z-20 px-4">
+      <div className="text-center mb-12 md:mb-16 z-20 px-4">
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -49,52 +29,48 @@ export default function ChapterNavigator() {
           transition={{ delay: 0.1 }}
           className="font-playfair text-4xl md:text-5xl lg:text-6xl text-maroon font-bold"
         >
-          Jelajahi Bab Kita
+          Jelajahi Ruang Kita
         </motion.h2>
       </div>
 
-      {/* Cards Container */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-6 lg:gap-10 w-full max-w-6xl px-6 z-20">
-        {chapters.map((chapter, index) => (
-          <Link href={chapter.href} key={chapter.id} className="w-full md:w-1/3 max-w-[320px]">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: 0.1 * index, type: "spring", stiffness: 100 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="group relative flex flex-col items-center p-8 rounded-t-full rounded-b-3xl cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 h-full border border-maroon/5"
-              style={{ backgroundColor: chapter.color }}
-            >
-              {/* Inner stroke */}
-              <div className="absolute inset-3 border border-white/40 rounded-t-full rounded-b-2xl pointer-events-none" />
-              
-              {/* Emoji Icon */}
-              <div className="w-20 h-20 rounded-full bg-white/60 flex items-center justify-center text-4xl mb-6 shadow-sm border border-white/80 group-hover:scale-110 transition-transform duration-300">
-                {chapter.emoji}
-              </div>
+      {/* Cards Container - Single Card "Ruang Kita" */}
+      <div className="flex items-center justify-center w-full max-w-md px-6 z-20">
+        <Link href="/ruang-kita" className="w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ type: "spring", stiffness: 100 }}
+            whileHover={{ y: -10, scale: 1.03 }}
+            className="group relative flex flex-col items-center p-10 md:p-12 rounded-t-full rounded-b-3xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 border border-maroon/10 bg-gradient-to-b from-[#FDE2D0] to-[#E8DFF5]"
+          >
+            {/* Inner stroke */}
+            <div className="absolute inset-3 border border-white/50 rounded-t-full rounded-b-2xl pointer-events-none" />
+            
+            {/* Heart Icon */}
+            <div className="w-20 h-20 rounded-full bg-white/80 flex items-center justify-center text-rose-500 mb-6 shadow-md border border-white group-hover:scale-110 transition-transform duration-300">
+              <Heart size={36} fill="currentColor" />
+            </div>
 
-              {/* Title */}
-              <h3 className="font-dancing text-3xl md:text-4xl mb-3 text-center" style={{ color: chapter.textColor }}>
-                {chapter.title}
-              </h3>
+            {/* Title */}
+            <h3 className="font-dancing text-4xl md:text-5xl mb-3 text-center text-[#4A1E2C]">
+              Ruang Kita
+            </h3>
 
-              {/* Divider */}
-              <div className="w-12 h-[1px] bg-black/10 my-3" />
+            {/* Divider */}
+            <div className="w-16 h-[1px] bg-[#4A1E2C]/20 my-3" />
 
-              {/* Subtitle */}
-              <p className="font-poppins text-[11px] md:text-xs text-center leading-relaxed px-2 font-medium opacity-70" style={{ color: chapter.textColor }}>
-                {chapter.subtitle}
-              </p>
+            {/* Subtitle */}
+            <p className="font-poppins text-xs md:text-sm text-center leading-relaxed px-4 font-medium text-[#4A1E2C]/80">
+              Kuis Hubungan, Roda Keberuntungan Kencan, Papan Pesan Cinta & Impian Bersama
+            </p>
 
-              {/* Explore Text */}
-              <div className="mt-8 font-poppins text-[9px] uppercase tracking-[0.2em] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ color: chapter.textColor }}>
-                Buka Bab &rarr;
-              </div>
-
-            </motion.div>
-          </Link>
-        ))}
+            {/* Explore Text Button */}
+            <div className="mt-8 font-poppins text-xs uppercase tracking-[0.25em] font-bold text-[#4A1E2C] group-hover:translate-x-1 transition-transform duration-300 flex items-center gap-1.5 bg-white/60 px-6 py-2.5 rounded-full shadow-xs">
+              Masuk Ruang Kita &rarr;
+            </div>
+          </motion.div>
+        </Link>
       </div>
 
     </section>
