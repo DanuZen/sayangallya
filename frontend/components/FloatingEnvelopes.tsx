@@ -15,9 +15,9 @@ const messages = [
       "Dengan penuh cinta,",
       "— Aku  ♡",
     ],
-    // absolute position relative to the main content wrapper (starts below Hero)
-    position: { top: "115%", left: "4%" },
-    rotation: -14,
+    // Positioned right BELOW Polaroid 1 ("First Time We Met")
+    position: { top: "34%", left: "22%" },
+    rotation: -15,
   },
   {
     id: 2,
@@ -30,8 +30,9 @@ const messages = [
       "Jangan pernah berubah ya.",
       "— Selalu untukmu  ♡",
     ],
-    position: { top: "45%", right: "8%" },
-    rotation: 16,
+    // Positioned right BELOW Polaroid 2 ("Our First Trip Together")
+    position: { top: "54%", left: "68%" },
+    rotation: 12,
   },
   {
     id: 3,
@@ -46,8 +47,9 @@ const messages = [
       "I love you.",
       "— Aku  ♡",
     ],
-    position: { top: "82%", left: "10%" },
-    rotation: -6,
+    // Positioned right BELOW Polaroid 3 ("Valentine's Day")
+    position: { top: "72%", left: "22%" },
+    rotation: -8,
   },
 ];
 
@@ -89,7 +91,7 @@ function MiniEnvelope({ id }: { id: number }) {
           width: 22,
           height: 22,
           background: "radial-gradient(circle at 35% 35%, #d9385e, #6e0a1c)",
-          boxShadow: "0 2px 8px rgba(110,10,28,0.5), inset 0 1px 2px rgba(255,255,255,0.15)",
+          boxShadow: "0 2px 8px rgba(110,10,28,0.5), inset 0 1px 2px rgba(255,180,195,0.15)",
           border: "1.5px solid #9a1228",
         }}
       >
@@ -133,7 +135,7 @@ export default function FloatingEnvelopes() {
 
   return (
     <>
-      {/* Absolute floating envelopes — scattered over the main content (scrolls with page) */}
+      {/* Absolute floating envelopes — positioned directly BELOW each polaroid card */}
       {messages.map((msg, idx) => (
         <motion.div
           key={msg.id}
@@ -270,7 +272,7 @@ export default function FloatingEnvelopes() {
                           style={{
                             top: 78,
                             background: "radial-gradient(circle at 35% 35%, #d9385e, #6e0a1c)",
-                            boxShadow: "0 3px 12px rgba(110,10,28,0.55), inset 0 1px 2px rgba(255,255,255,0.15)",
+                            boxShadow: "0 3px 12px rgba(110,10,28,0.55), inset 0 1px 2px rgba(255,180,195,0.15)",
                             border: "2px solid #9a1228",
                           }}
                         >
