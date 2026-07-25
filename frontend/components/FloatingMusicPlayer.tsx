@@ -1,117 +1,78 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useAudio } from "@/lib/AudioContext";
 import { motion, AnimatePresence } from "framer-motion";
+import { Music, Disc } from "lucide-react";
 
 export default function FloatingMusicPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [hasStarted, setHasStarted] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const isExpanded = isPlaying || isHovered;
-
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = 0.4;
-    }
-  }, []);
-
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play().catch(e => console.log("Audio play failed:", e));
-      }
-      setIsPlaying(!isPlaying);
-      if (!hasStarted) setHasStarted(true);
-    }
-  };
+  const { isPlaying, currentTrack, showToast, dismissToast } = useAudio();
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ 
-        opacity: 1, 
-        y: 0,
-        width: isExpanded ? 246 : 68
-      }}
-      transition={{ 
-        opacity: { duration: 1, delay: 1.5 },
-        y: { duration: 1, delay: 1.5 },
-        width: { duration: 0.4, type: "spring", bounce: 0.2 }
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="fixed bottom-6 left-6 z-[999] flex items-center gap-4 bg-[#FCFBF9]/90 backdrop-blur-md border border-[#F3EAE3] rounded-full p-1.5 shadow-[0_8px_25px_rgba(74,30,44,0.15)] overflow-hidden"
-    >
-      {/* 
-        GANTI SRC AUDIO INI DENGAN LAGU PILIHANMU! 
-        Contoh: simpan file "lagu-kita.mp3" di folder public/ 
-        lalu ubah src menjadi src="/lagu-kita.mp3"
-      */}
-      <audio 
-        ref={audioRef} 
-        loop 
-        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" 
-      />
-
-      {/* Play/Pause Button - Premium Vinyl Record Style */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={togglePlay}
-        className="relative flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center bg-[#1B1425] text-[#F3EAE3] shadow-[0_10px_30px_rgba(0,0,0,0.3)] border-[3px] border-[#FCFBF9]"
-      >
-        {/* Vinyl Grooves */}
-        <div className="absolute inset-1 rounded-full border border-white/10" />
-        <div className="absolute inset-2 rounded-full border border-white/5" />
-        
-        {/* Record Label / Play Icon */}
-        <div className="relative w-5 h-5 rounded-full bg-maroon flex items-center justify-center shadow-inner">
-          {isPlaying ? (
-            <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor">
-              <rect x="5" y="3" width="5" height="18" rx="1" />
-              <rect x="14" y="3" width="5" height="18" rx="1" />
-            </svg>
-          ) : (
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" className="ml-0.5">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          )}
-        </div>
-
-        {/* Spinning animation overlay when playing */}
-        <AnimatePresence>
-          {isPlaying && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 rounded-full"
-              style={{ background: "conic-gradient(from 0deg, transparent 0%, rgba(255,255,255,0.1) 15%, transparent 30%)" }}
-            />
-          )}
-        </AnimatePresence>
-      </motion.button>
-
-      {/* Track Info Marquee */}
-      <div className="flex flex-col overflow-hidden flex-shrink-0 w-36 pointer-events-none select-none">
-        <span className="font-poppins text-[9px] uppercase tracking-[0.25em] text-maroon/60 font-semibold">
-          Now Playing
-        </span>
-        <div className="relative w-full h-6 overflow-hidden mt-0.5" style={{ maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)" }}>
+    <AnimatePresence>
+      {showToast && (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3 }}
+          onClick={dismissToast}
+          className="fixed bottom-6 left-6 z-[99999] cursor-pointer flex items-center group pointer-events-auto"
+          title="Klik untuk menutup notifikasi"
+        >
+          {/* Main Capsule Body (Expands Out From Behind the Vinyl Circle) */}
           <motion.div
-            animate={isPlaying ? { x: ["0%", "-50%"] } : { x: "0%" }}
-            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-            className="absolute whitespace-nowrap font-dancing text-lg text-maroon/90 flex gap-2 drop-shadow-sm"
+            initial={{ width: 48, opacity: 0.8 }}
+            animate={{ width: "auto", opacity: 1 }}
+            exit={{ width: 48, opacity: 0 }}
+            transition={{
+              duration: 0.45,
+              ease: [0.16, 1, 0.3, 1], // Smooth cubic bezier expansion
+              delay: 0.1,
+            }}
+            className="flex items-center bg-[#FAF5EF]/95 backdrop-blur-md border border-[#4A1E2C]/20 rounded-full pl-1.5 pr-6 py-1.5 shadow-[0_15px_40px_rgba(0,0,0,0.4)] overflow-hidden"
           >
-            <span>Our Love Story Soundtrack •</span>
-            <span>Our Love Story Soundtrack •</span>
+            {/* Spinning Vinyl Record Badge (Pops In First) */}
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              exit={{ scale: 0, rotate: 180 }}
+              transition={{ type: "spring", stiffness: 380, damping: 22 }}
+              className="relative flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center bg-[#2A111F] text-[#F3EAE3] shadow-md border-2 border-white overflow-hidden z-10"
+            >
+              {/* Vinyl Grooves */}
+              <div className="absolute inset-1 rounded-full border border-white/15" />
+
+              <motion.div
+                animate={{ rotate: isPlaying ? 360 : 0 }}
+                transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+                className="flex items-center justify-center"
+              >
+                <Disc size={20} className="text-rose-300" />
+              </motion.div>
+            </motion.div>
+
+            {/* Track Information (Slides & Fades Out from Circle) */}
+            <motion.div
+              initial={{ opacity: 0, x: -16 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -16 }}
+              transition={{ duration: 0.32, delay: 0.25 }}
+              className="flex flex-col select-none max-w-[200px] ml-3 whitespace-nowrap"
+            >
+              <div className="flex items-center gap-1.5 text-[9px] uppercase tracking-[0.22em] text-[#4A1E2C]/80 font-bold font-poppins">
+                <Music size={10} className="text-rose-600 animate-pulse" />
+                {isPlaying ? "Sedang Diputar" : "Musik Dihentikan"}
+              </div>
+              <p className="font-dancing text-lg text-[#3A1420] font-bold truncate leading-tight mt-0.5">
+                {currentTrack.title}
+              </p>
+              <p className="font-poppins text-[10px] text-black/50 font-medium truncate">
+                {currentTrack.artist}
+              </p>
+            </motion.div>
           </motion.div>
-        </div>
-      </div>
-    </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
