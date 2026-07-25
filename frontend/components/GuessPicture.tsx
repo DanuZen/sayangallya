@@ -11,10 +11,10 @@ interface Props {
 }
 
 const gameData = {
-  imageUrl: "/images/dummy-photo.png", // Reusing the timeline dummy photo
+  imageUrl: "/images/dummy-photo.png",
   question: "Masih ingat nggak, foto ini diambil waktu kita lagi ngapain?",
   options: ["Liburan ke pantai Kuta", "Anniversary tahun pertama", "Kencan pertama kali", "Piknik sore-sore"],
-  answer: 1 // Anniversary
+  answer: 1
 };
 
 export default function GuessPicture({ isOpen, onClose }: Props) {
@@ -47,23 +47,23 @@ export default function GuessPicture({ isOpen, onClose }: Props) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
-            className="absolute inset-0 bg-charcoal/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#180A15]/80 backdrop-blur-sm"
           />
           
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-md bg-cream rounded-3xl p-6 shadow-2xl overflow-hidden flex flex-col"
+            className="relative w-full max-w-md bg-[#FFF9FA] border border-pink-200 rounded-3xl p-6 shadow-2xl overflow-hidden flex flex-col"
           >
             <button 
               onClick={handleClose}
-              className="absolute top-4 right-4 text-white hover:text-rose z-20 p-2 bg-charcoal/30 rounded-full backdrop-blur-md transition-colors"
+              className="absolute top-4 right-4 text-white hover:text-pink-200 z-20 p-2 bg-[#3A1420]/40 rounded-full backdrop-blur-md transition-colors cursor-pointer"
             >
               <X size={20} />
             </button>
             
-            <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-6 shadow-inner bg-gray-200">
+            <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-6 shadow-inner bg-pink-100">
               <Image 
                 src={gameData.imageUrl} 
                 alt="Guess the moment" 
@@ -71,15 +71,15 @@ export default function GuessPicture({ isOpen, onClose }: Props) {
                 className={`object-cover transition-all duration-1000 ease-out ${isRevealed ? 'blur-0 scale-100' : 'blur-xl scale-110'}`}
               />
               {!isRevealed && (
-                <div className="absolute inset-0 flex items-center justify-center bg-rose/10 pointer-events-none">
-                   <ImageIcon size={48} className="text-white/60 drop-shadow-md" />
+                <div className="absolute inset-0 flex items-center justify-center bg-pink-900/20 pointer-events-none">
+                   <ImageIcon size={48} className="text-white/80 drop-shadow-md" />
                 </div>
               )}
             </div>
             
             {!isRevealed ? (
               <div className="flex-1 flex flex-col">
-                <h3 className="font-playfair text-xl font-semibold text-charcoal mb-4 text-center px-2">
+                <h3 className="font-playfair text-xl font-bold text-[#3A1420] mb-4 text-center px-2">
                   {gameData.question}
                 </h3>
                 
@@ -87,16 +87,16 @@ export default function GuessPicture({ isOpen, onClose }: Props) {
                   {gameData.options.map((opt, idx) => (
                     <button
                       key={idx}
-                      disabled={selectedOpt !== null && selectedOpt === gameData.answer} // Disable if correct
+                      disabled={selectedOpt !== null && selectedOpt === gameData.answer}
                       onClick={() => handleAnswer(idx)}
-                      className={`w-full p-3.5 rounded-xl font-poppins text-sm transition-all duration-300 border outline-none ${
+                      className={`w-full p-3.5 rounded-xl font-poppins text-xs font-medium transition-all duration-300 border outline-none cursor-pointer ${
                         selectedOpt === null 
-                          ? 'bg-white border-bordergray hover:border-rose/50 hover:shadow-sm text-charcoal' 
+                          ? 'bg-white border-pink-100 hover:border-pink-400 hover:bg-pink-50/60 text-[#3A1420] shadow-2xs' 
                           : selectedOpt === idx 
                             ? idx === gameData.answer 
-                              ? 'bg-sage border-sage text-white shadow-md' 
-                              : 'bg-red-500 border-red-500 text-white animate-pulse shadow-md'
-                            : 'bg-white border-bordergray opacity-50'
+                              ? 'bg-pink-600 border-pink-600 text-white shadow-md font-semibold' 
+                              : 'bg-rose-500 border-rose-500 text-white animate-pulse shadow-md'
+                            : 'bg-white border-pink-100 opacity-50'
                       }`}
                     >
                       {opt}
@@ -110,16 +110,16 @@ export default function GuessPicture({ isOpen, onClose }: Props) {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center py-4"
               >
-                <div className="flex justify-center mb-4 text-rose">
+                <div className="flex justify-center mb-4 text-pink-600">
                   <PartyPopper size={40} />
                 </div>
-                <h2 className="font-playfair text-2xl font-bold text-charcoal mb-2">Benar Banget! 🎉</h2>
-                <p className="font-poppins text-sm text-charcoal/70 mb-6">
+                <h2 className="font-playfair text-2xl font-bold text-[#3A1420] mb-2">Benar Banget! 🎉</h2>
+                <p className="font-poppins text-xs text-[#3A1420]/80 mb-6 leading-relaxed">
                   Itu momen {gameData.options[gameData.answer].toLowerCase()}. Momen terindah yang nggak akan pernah aku lupain.
                 </p>
                 <button
                   onClick={handleClose}
-                  className="bg-rose text-white font-poppins font-medium px-6 py-3 rounded-full hover:bg-rose/90 transition-colors shadow-sm w-full"
+                  className="bg-pink-600 text-white font-poppins font-medium px-6 py-3 rounded-full hover:bg-pink-700 transition-colors shadow-sm w-full cursor-pointer"
                 >
                   Tutup Gambar
                 </button>
