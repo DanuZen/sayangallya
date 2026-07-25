@@ -48,20 +48,22 @@ export default function TimelineItem({ event, index }: Props) {
       {/* Polaroid Column */}
       <div className="w-full md:w-5/12 ml-6 md:ml-0">
         <motion.div
-          initial={{ opacity: 0, x: isEven ? 60 : -60, rotate: 0 }}
-          whileInView={{ opacity: 1, x: 0, rotate: tilt }}
-          whileHover={{ rotate: 0, scale: 1.03, y: -8, zIndex: 30 }}
+          initial={{ opacity: 0, x: isEven ? 60 : -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, type: "spring", stiffness: 90, damping: 14 }}
-          className="w-full cursor-pointer relative"
+          transition={{ duration: 0.8, delay: index * 0.15, type: "spring" }}
+          className="w-full relative transition-transform duration-300 hover:scale-[1.03] hover:z-30"
         >
-          {/* Polaroid Frame */}
+          {/* Gentle Floating & Swaying Polaroid Frame (No popup trigger) */}
           <div
-            className="rounded-sm relative bg-[#FCFBF9]"
+            className="polaroid-sway rounded-sm relative bg-[#FCFBF9] transition-shadow duration-500 hover:shadow-[0_25px_50px_rgba(74,30,44,0.2)]"
             style={{
+              "--base-rot": `${tilt}deg`,
+              animationDelay: `${index * 0.5}s`,
+              animationDuration: `${9 + (index % 3) * 1.5}s`,
               boxShadow: "0 15px 40px rgba(0,0,0,0.12), 4px 4px 0px rgba(0,0,0,0.04)",
               padding: "12px 12px 76px", // Increased bottom padding to fit title perfectly
-            }}
+            } as React.CSSProperties}
           >
             {/* Mobile dot */}
             <div className="md:hidden absolute -left-10 top-6 w-4 h-4 rounded-full bg-[#4A1E2C] border-2 border-[#F3EAE3] shadow-sm z-10" />
