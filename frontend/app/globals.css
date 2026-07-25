@@ -24,12 +24,54 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #4A1E2C #FAF5EF;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background-color: var(--color-maroon);
+  background-color: #F3EAE3;
   color: var(--color-foreground);
   font-family: var(--font-poppins), Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* === LUXURY EDITORIAL CUSTOM SCROLLBAR (SINGLE SCROLLBAR ONLY) === */
+html::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #FAF5EF;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #4A1E2C;
+  border-radius: 9999px;
+  border: 2px solid #FAF5EF;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: #6A2B3F;
+}
+
+/* Hide scrollbar on sub-elements by default */
+body::-webkit-scrollbar,
+main::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* === Hide Scrollbar Utility === */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
 }
 
 /* === Decorative Background Patterns === */
@@ -89,9 +131,36 @@ body {
   background: radial-gradient(circle, #C5A8E0 0%, transparent 70%);
 }
 
-/* Hide paper plane when an envelope modal is open */
-body.envelope-open .plane-navigator {
+/* Hide paper plane when an envelope or modal popup is open */
+body.envelope-open .plane-navigator,
+body.modal-open .plane-navigator {
+  display: none !important;
   opacity: 0 !important;
   pointer-events: none !important;
   transition: opacity 0.3s ease;
+}
+
+/* Prevent page scroll when any modal or envelope popup is open without resetting scroll position */
+body.envelope-open,
+body.modal-open,
+html.envelope-open,
+html.modal-open {
+  overflow: hidden !important;
+  touch-action: none !important;
+  overscroll-behavior: none !important;
+}
+
+/* Gentle organic floating sway for Polaroid cards */
+@keyframes polaroidFloatSway {
+  0%, 100% {
+    transform: translateY(0px) rotate(calc(var(--base-rot, 0deg) - 1.2deg));
+  }
+  50% {
+    transform: translateY(-6px) rotate(calc(var(--base-rot, 0deg) + 1.2deg));
+  }
+}
+
+.polaroid-sway {
+  animation: polaroidFloatSway 9s ease-in-out infinite;
+  will-change: transform;
 }
