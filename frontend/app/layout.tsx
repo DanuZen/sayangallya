@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Poppins, Dancing_Script } from "next/font/google";
+import Providers from "@/components/Providers";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -32,9 +33,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${poppins.variable} ${dancingScript.variable} h-full antialiased scroll-smooth`}
+      className={`${playfair.variable} ${poppins.variable} ${dancingScript.variable} antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-screen flex flex-col font-sans">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
