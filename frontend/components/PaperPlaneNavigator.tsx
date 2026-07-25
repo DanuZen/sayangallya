@@ -29,17 +29,18 @@ export default function PaperPlaneNavigator() {
     12, 18,   // Left edge bank
     50,       // Flying right fast
     88, 82,   // Right edge bank
-    60        // End: Lands near center
+    50        // End: Lands precisely at 50% horizontal center at the top of Footer
   ]; 
   
-  // Y path: viewport-relative percentages (35% → 70% of viewport height).
-  // Fixed positioning means these are always relative to the screen, not the document.
-  // This eliminates ALL lag — the plane is always on-screen and scroll-synced instantly.
-  const yValues = [35, 35, 45, 45, 45, 55, 55, 55, 62, 62, 62, 68, 68, 68, 70, 70, 70, 72, 72, 72, 72];
+  // Y path: viewport-relative percentages (lands at 64% precisely on top divider line above Danu & Allya)
+  const yValues = [35, 35, 45, 45, 45, 55, 55, 55, 60, 60, 60, 62, 62, 62, 63, 63.5, 64, 64, 64, 64, 64];
 
   // Map scroll progress directly to coordinates (no spring = no lag)
   const xTarget = useTransform(scrollYProgress, xStops, xValues);
   const yTarget = useTransform(scrollYProgress, xStops, yValues);
+
+  // Shadow opacity fades to 0 when entering Footer (scroll progress > 0.88)
+  const shadowOpacity = useTransform(scrollYProgress, [0, 0.85, 0.95, 1], [1, 1, 0, 0]);
 
   // Position directly tracks scroll with NO spring delay — instant response.
   const left = useTransform(xTarget, (x) => `${x}%`);
@@ -93,7 +94,7 @@ export default function PaperPlaneNavigator() {
 
   return (
     <motion.div
-      className="fixed z-[999] pointer-events-none plane-navigator"
+      className="fixed z-[999] pointer-events-none plane-navigator -translate-x-1/2 -translate-y-1/2"
       style={{ top, left, scale }}
     >
       <motion.div
@@ -104,8 +105,11 @@ export default function PaperPlaneNavigator() {
         transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
         className="relative"
       >
-        {/* SHADOW - Placed OUTSIDE the rotating div so it stays below the plane always */}
-        <div className="absolute -bottom-10 left-4 w-20 h-10 bg-[#4A1E2C]/20 blur-[12px] rounded-[100%] rotate-[-10deg]" />
+        {/* SHADOW - Fades out smoothly when landed in the footer */}
+        <motion.div
+          style={{ opacity: shadowOpacity }}
+          className="absolute -bottom-10 left-4 w-20 h-10 bg-[#4A1E2C]/20 blur-[12px] rounded-[100%] rotate-[-10deg]"
+        />
         
         {/* Plane container - Rotates based on flight path and flips if moving left */}
         <motion.div style={{ rotate, scaleY }}>
