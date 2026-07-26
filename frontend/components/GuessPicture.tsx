@@ -47,14 +47,14 @@ export default function GuessPicture({ isOpen, onClose }: Props) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
-            className="absolute inset-0 bg-[#180A15]/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#2D0D17]/60 backdrop-blur-md"
           />
           
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-md bg-[#FFF9FA] border border-pink-200 rounded-3xl p-6 shadow-2xl overflow-hidden flex flex-col"
+            className="relative w-full max-w-md bg-[#FFF9FA] border border-pink-200 rounded-sm p-6 shadow-2xl overflow-hidden flex flex-col"
           >
             <button 
               onClick={handleClose}
@@ -63,7 +63,7 @@ export default function GuessPicture({ isOpen, onClose }: Props) {
               <X size={20} />
             </button>
             
-            <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-6 shadow-inner bg-pink-100">
+            <div className="relative w-full aspect-square rounded-xs overflow-hidden mb-6 shadow-inner bg-pink-100">
               <Image 
                 src={gameData.imageUrl} 
                 alt="Guess the moment" 

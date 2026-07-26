@@ -19,11 +19,6 @@ const quizData = [
     question: "Siapa yang pertama kali bilang 'I Love You'?",
     options: ["Kamu dong!", "Aku pastinya", "Sama-sama bilang", "Nggak ada yang bilang"],
     answer: 1
-  },
-  {
-    question: "Apa kebiasaan anehku yang kamu paling hafal?",
-    options: ["Tidur ngorok", "Suka gigit sedotan", "Ketawa telat", "Lupa taruh kunci"],
-    answer: 2
   }
 ];
 
@@ -71,14 +66,14 @@ export default function RelationshipQuiz({ isOpen, onClose }: Props) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
-            className="absolute inset-0 bg-[#180A15]/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#2D0D17]/60 backdrop-blur-md"
           />
           
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-md bg-[#FFF9FA] border border-pink-200 rounded-3xl p-8 shadow-2xl overflow-hidden"
+            className="relative w-full max-w-md bg-[#FFF9FA] border border-pink-200 rounded-sm p-8 shadow-2xl overflow-hidden"
           >
             {/* Close Button */}
             <button 

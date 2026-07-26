@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { RefreshCw, Plus, Trash2, ListFilter, X } from "lucide-react";
+import { RefreshCw, Plus, Trash2, ListFilter, X, SlidersHorizontal, Sparkles } from "lucide-react";
+import { triggerConfetti } from "@/components/ui/confetti";
 
 interface Option {
   id: string;
@@ -10,23 +11,19 @@ interface Option {
   color: string;
 }
 
-// Luxury Romantic Pink & Rose Palette
-const defaultIdeas: Option[] = [
-  { id: "1", text: "Piknik Sore di Taman", color: "#FCE7F3" }, // Soft Cotton Pink
-  { id: "2", text: "Nonton Movie Night + Popcorn", color: "#F472B6" }, // Sweet Vibrant Pink
-  { id: "3", text: "Masak Resep Baru Bareng", color: "#FBCFE8" }, // Warm Blush Pink
-  { id: "4", text: "Jalan-Jalan Malam & Es Krim", color: "#FB7185" }, // Romantic Coral Rose
-  { id: "5", text: "Pottery / Crafting Studio", color: "#F48FB1" }, // Soft Pastel Rose
-  { id: "6", text: "Karaoke Lagu Favorit", color: "#F8BBD0" }, // Creamy Rose Pink
+// 2 Alternating Colors: Romantic Pink & Soft Pink Pastel
+const twoColorPalette = [
+  { bg: "#E88CA8", text: "#3D1020" }, // Elegant Pink
+  { bg: "#FCE7F3", text: "#3D1020" }, // Soft Pink Pastel
 ];
 
-const luxuryPinkPalette = [
-  "#FCE7F3",
-  "#F472B6",
-  "#FBCFE8",
-  "#FB7185",
-  "#F48FB1",
-  "#F8BBD0",
+const defaultIdeas: Option[] = [
+  { id: "1", text: "Piknik Sore di Taman", color: twoColorPalette[0].bg },
+  { id: "2", text: "Nonton Movie Night + Popcorn", color: twoColorPalette[1].bg },
+  { id: "3", text: "Masak Resep Baru Bareng", color: twoColorPalette[0].bg },
+  { id: "4", text: "Jalan-Jalan Malam & Es Krim", color: twoColorPalette[1].bg },
+  { id: "5", text: "Pottery / Crafting Studio", color: twoColorPalette[0].bg },
+  { id: "6", text: "Karaoke Lagu Favorit", color: twoColorPalette[1].bg },
 ];
 
 interface DateSpinnerProps {
@@ -95,6 +92,7 @@ export default function DateSpinner({ standalone = false, onPopupStateChange }: 
       const winner = list[randomIndex];
       setSelectedWinner(winner);
       onPopupStateChange?.(true);
+      triggerConfetti({ particleCount: 100, spread: 100, origin: { y: 0.5 } });
     }, 4000);
   };
 
@@ -102,10 +100,11 @@ export default function DateSpinner({ standalone = false, onPopupStateChange }: 
     e.preventDefault();
     if (!newOptionText.trim()) return;
 
+    const paletteItem = twoColorPalette[list.length % 2];
     const newOpt: Option = {
       id: Date.now().toString(),
       text: newOptionText.trim(),
-      color: luxuryPinkPalette[list.length % luxuryPinkPalette.length],
+      color: paletteItem.bg,
     };
 
     setList([...list, newOpt]);
@@ -124,25 +123,25 @@ export default function DateSpinner({ standalone = false, onPopupStateChange }: 
       className={`w-full max-w-5xl mx-auto relative flex flex-col justify-between ${
         standalone
           ? "py-1 min-h-[72vh]"
-          : "my-12 p-6 md:p-10 bg-[#FAF7F2] rounded-[32px] shadow-xl border border-[#4A1E2C]/10"
+          : "my-12 p-6 md:p-10 bg-[#FAF7F2] rounded-xl shadow-xl border border-[#4A1E2C]/10"
       }`}
     >
       {/* Centered Large SVG Wheel Spinner Container */}
-      <div className="flex-1 flex flex-col items-center justify-center relative select-none my-auto pt-6">
+      <div className="flex-1 flex flex-col items-center justify-center relative select-none my-auto pt-4">
         
-        {/* SVG Wheel Circle Outer Shadow Frame */}
-        <div className="relative w-84 h-84 sm:w-[440px] sm:h-[440px] md:w-[480px] md:h-[480px] rounded-full p-3.5 bg-gradient-to-b from-[#3D1823] via-[#2A111F] to-[#1A0A13] shadow-[0_25px_65px_rgba(0,0,0,0.75)] border-2 border-pink-300/40">
+        {/* SVG Wheel Circle Outer Shadow & Gold Frame */}
+        <div className="relative w-80 h-80 sm:w-[440px] sm:h-[440px] md:w-[470px] md:h-[470px] rounded-full p-3 bg-gradient-to-b from-[#2E0E18] via-[#4A1E2C] to-[#1A060E] shadow-[0_30px_70px_rgba(0,0,0,0.85)] border-2 border-amber-300/40">
           
-          {/* Wheel Pointer Pin (Attached directly to top rim - Romantic Rose Pink 3D Pin) */}
-          <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center pointer-events-none drop-shadow-[0_4px_10px_rgba(0,0,0,0.6)]">
+          {/* Wheel Pointer Pin — Luxury Gold Teardrop Arrow */}
+          <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center pointer-events-none drop-shadow-[0_6px_14px_rgba(0,0,0,0.7)]">
             <div
-              className="w-8 h-10 bg-gradient-to-b from-pink-300 via-pink-400 to-rose-600 rounded-t-full flex items-center justify-center border border-rose-800"
+              className="w-7 h-10 bg-gradient-to-b from-amber-200 via-amber-400 to-amber-600 rounded-t-full flex items-center justify-center border border-amber-100/60 shadow-lg"
               style={{ clipPath: "polygon(0% 0%, 100% 0%, 50% 100%)" }}
             />
-            <div className="w-3.5 h-3.5 rounded-full bg-pink-100 -mt-8 border border-pink-900 shadow-inner" />
+            <div className="w-3 h-3 rounded-full bg-rose-900 -mt-8 border border-amber-200 shadow-inner" />
           </div>
 
-          <div className="w-full h-full rounded-full overflow-hidden relative border border-[#3D1823]">
+          <div className="w-full h-full rounded-full overflow-hidden relative border border-amber-400/30">
             <motion.div
               animate={{ rotate: rotation }}
               transition={{
@@ -152,6 +151,15 @@ export default function DateSpinner({ standalone = false, onPopupStateChange }: 
               className="w-full h-full"
             >
               <svg viewBox="0 0 400 400" className="w-full h-full">
+                <defs>
+                  {/* Luxury Gold Metallic Gradient */}
+                  <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#FDE68A" />
+                    <stop offset="50%" stopColor="#D97706" />
+                    <stop offset="100%" stopColor="#78350F" />
+                  </linearGradient>
+                </defs>
+
                 {list.map((idea, i) => {
                   const startAngle = i * sliceAngle;
                   const endAngle = (i + 1) * sliceAngle;
@@ -163,27 +171,30 @@ export default function DateSpinner({ standalone = false, onPopupStateChange }: 
                   const formattedText =
                     idea.text.length > 18 ? idea.text.substring(0, 18) + "..." : idea.text;
 
+                  // 2 Alternating Colors: Pink (#E88CA8) and Pink Pastel (#FCE7F3)
+                  const sliceStyle = twoColorPalette[i % 2];
+
                   return (
                     <g key={idea.id}>
                       <path
                         d={pathData}
-                        fill={idea.color}
-                        stroke="#3D1823"
+                        fill={sliceStyle.bg}
+                        stroke="#4A1E2C"
                         strokeOpacity="0.3"
-                        strokeWidth="2.5"
+                        strokeWidth="2"
                       />
                       <g transform={`rotate(${midAngle - 90}, 200, 200)`}>
                         <text
                           x={320}
                           y={200}
-                          fill="#3A1420"
+                          fill={sliceStyle.text}
                           fontSize="11"
-                          fontWeight="800"
-                          fontFamily="sans-serif"
+                          fontWeight="700"
+                          fontFamily="Playfair Display, Georgia, serif"
                           textAnchor="middle"
                           dominantBaseline="central"
                           transform={isUpsideDown ? "rotate(180, 320, 200)" : ""}
-                          className="pointer-events-none select-none tracking-tight font-extrabold"
+                          className="pointer-events-none select-none tracking-normal font-serif"
                         >
                           {formattedText}
                         </text>
@@ -192,39 +203,40 @@ export default function DateSpinner({ standalone = false, onPopupStateChange }: 
                   );
                 })}
 
-                {/* Decorative Inner Ring Border */}
-                <circle cx="200" cy="200" r="195" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" />
+                {/* Outer Decorative Gold Rim Circle */}
+                <circle cx="200" cy="200" r="195" fill="none" stroke="url(#goldGradient)" strokeWidth="2.5" strokeOpacity="0.8" />
               </svg>
             </motion.div>
 
-            {/* Inner Center Circle Frame */}
-            <div className="absolute inset-0 m-auto w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#FAF5EF] border-4 border-[#3D1823] shadow-2xl flex items-center justify-center z-10">
-              <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-tr from-pink-400 via-pink-100 to-rose-300 border border-pink-400/80 shadow-inner flex items-center justify-center" />
+            {/* Inner Center Circle Wax Seal Frame */}
+            <div className="absolute inset-0 m-auto w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#2E0E18] border-4 border-amber-300/60 shadow-[0_0_25px_rgba(0,0,0,0.8)] flex items-center justify-center z-10">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-tr from-[#3D1421] via-[#4A1E2C] to-[#6C263A] border border-amber-200/40 shadow-inner flex items-center justify-center" />
             </div>
           </div>
 
-          {/* Center SPIN Trigger Button (Romantic Rose Pink Gradient) */}
+          {/* Center SPIN Trigger Button (Luxury Wax Seal Style) */}
           <button
             onClick={handleSpin}
             disabled={spinning || list.length === 0}
-            className="absolute inset-0 m-auto w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-tr from-pink-500 via-rose-300 to-pink-100 text-[#3A1420] font-playfair font-black text-xl sm:text-2xl shadow-[0_8px_25px_rgba(0,0,0,0.5)] z-20 flex flex-col items-center justify-center hover:scale-105 active:scale-95 transition-transform disabled:opacity-60 cursor-pointer border-2 border-white/60 tracking-wider"
+            className="absolute inset-0 m-auto w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-b from-[#5C1D30] via-[#4A1E2C] to-[#2B0E18] text-[#F3EAE3] font-playfair font-bold text-lg sm:text-xl shadow-[0_10px_30px_rgba(0,0,0,0.7)] z-20 flex flex-col items-center justify-center hover:scale-105 active:scale-95 transition-transform disabled:opacity-60 cursor-pointer border-2 border-amber-300/80 tracking-widest"
           >
             {spinning ? (
-              <RefreshCw size={28} className="animate-spin text-[#3A1420]" />
+              <RefreshCw size={26} className="animate-spin text-amber-200" />
             ) : (
-              <span>SPIN</span>
+              <span className="drop-shadow-md text-amber-200">PUTAR</span>
             )}
           </button>
         </div>
       </div>
 
-      {/* Bottom Action Button (Pushed cleanly to bottom, matching BucketList and LoveNotesBoard) */}
+      {/* Bottom Action Button (Stunning Romantic Pink Pill) */}
       <div className="flex justify-center mt-auto pt-4 relative z-10">
         <button
           onClick={openListModal}
-          className="bg-[#4A1E2C] text-[#F3EAE3] hover:bg-rose-900 px-6 py-2.5 rounded-full font-poppins text-xs font-semibold tracking-wide transition-all shadow-lg flex items-center gap-2 hover:scale-105 active:scale-95 cursor-pointer border border-white/20"
+          className="group relative bg-gradient-to-r from-[#E88CA8] via-[#F472B6] to-[#E88CA8] hover:from-[#E06D8C] hover:to-[#EC4899] text-white px-6 py-2.5 rounded-full font-poppins text-xs font-semibold tracking-widest uppercase transition-all duration-300 shadow-[0_8px_25px_rgba(232,140,168,0.5)] hover:shadow-[0_12px_30px_rgba(244,114,182,0.6)] flex items-center gap-2 hover:scale-105 active:scale-95 cursor-pointer border border-pink-200/80 backdrop-blur-md"
         >
-          <ListFilter size={16} /> Lihat / Kelola Daftar Pilihan ({list.length})
+          <SlidersHorizontal size={14} className="text-white group-hover:rotate-90 transition-transform duration-300 drop-shadow-sm" />
+          <span className="tracking-wider drop-shadow-sm">Kelola</span>
         </button>
       </div>
 
@@ -349,7 +361,7 @@ export default function DateSpinner({ standalone = false, onPopupStateChange }: 
         {selectedWinner && (
           <div
             onClick={closeWinnerPopup}
-            className="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex flex-col items-center justify-center p-4 cursor-pointer"
+            className="fixed inset-0 bg-[#2D0D17]/60 backdrop-blur-md z-50 flex flex-col items-center justify-center p-4 cursor-pointer"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.85, y: 20 }}

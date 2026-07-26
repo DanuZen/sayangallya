@@ -172,13 +172,14 @@ export default function LoveNotesBoard({
         ))}
       </div>
 
-      {/* Bottom Action Button (Pushed cleanly to the bottom) */}
+      {/* Bottom Action Button (Stunning Romantic Pink Pill) */}
       <div className="flex justify-center mt-auto pt-4 relative z-10">
         <button
           onClick={() => setShowForm(!showForm)}
-          className="bg-[#4A1E2C] text-[#F3EAE3] hover:bg-rose-900 px-6 py-2.5 rounded-full flex items-center justify-center gap-2 transition-all shadow-lg text-xs font-poppins font-semibold tracking-wide cursor-pointer hover:scale-105 active:scale-95 border border-white/20"
+          className="group relative bg-gradient-to-r from-[#E88CA8] via-[#F472B6] to-[#E88CA8] hover:from-[#E06D8C] hover:to-[#EC4899] text-white px-6 py-2.5 rounded-full font-poppins text-xs font-semibold tracking-widest uppercase transition-all duration-300 shadow-[0_8px_25px_rgba(232,140,168,0.5)] hover:shadow-[0_12px_30px_rgba(244,114,182,0.6)] flex items-center gap-2 hover:scale-105 active:scale-95 cursor-pointer border border-pink-200/80 backdrop-blur-md"
         >
-          <Plus size={16} /> Tempel Pesan Baru
+          <Plus size={15} className="text-white group-hover:rotate-90 transition-transform duration-300 drop-shadow-sm" />
+          <span className="tracking-wider drop-shadow-sm">Tempel Pesan Baru</span>
         </button>
       </div>
 
@@ -261,7 +262,7 @@ export default function LoveNotesBoard({
         {selectedNote && (
           <div
             onClick={handleCloseNoteModal}
-            className="fixed inset-0 bg-[#180A15]/80 backdrop-blur-md z-50 flex flex-col items-center justify-center p-4 cursor-pointer"
+            className="fixed inset-0 bg-[#2D0D17]/60 backdrop-blur-md z-50 flex flex-col items-center justify-center p-4 cursor-pointer"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}

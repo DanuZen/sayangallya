@@ -25,7 +25,7 @@ export default function BucketListItem({ data, index = 0 }: Props) {
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
       style={{ rotate: cardRotation }}
       whileHover={{ scale: 1.04, rotate: "0deg", zIndex: 30 }}
       onClick={() => setIsDone(!isDone)}

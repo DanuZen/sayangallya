@@ -48,7 +48,7 @@ export default function CoupleGames({ standalone = false }: CoupleGamesProps) {
             whileHover={{ rotate: 0, scale: 1.03, y: -6 }}
             transition={{ duration: 0.4, type: "spring", stiffness: 100, damping: 14 }}
             onClick={onOpen}
-            className="cursor-pointer relative rounded-lg border border-black/5"
+            className="cursor-pointer relative rounded-sm border border-black/5"
             style={{
               backgroundColor: "#FCFBF9",
               boxShadow: "0 15px 40px rgba(0,0,0,0.25), 4px 4px 0px rgba(0,0,0,0.06)",
@@ -81,7 +81,7 @@ export default function CoupleGames({ standalone = false }: CoupleGamesProps) {
                 {game.description}
               </p>
               <button
-                className="mt-4 text-xs font-poppins font-semibold tracking-widest uppercase px-4 py-2 border rounded-md transition-all duration-200 hover:bg-[#4A1E2C] hover:text-white cursor-pointer"
+                className="mt-4 text-xs font-poppins font-semibold tracking-widest uppercase px-4 py-2 border rounded-sm transition-all duration-200 hover:bg-[#4A1E2C] hover:text-white cursor-pointer"
                 style={{ borderColor: "#4A1E2C", color: "#4A1E2C" }}
               >
                 {game.buttonText}
@@ -113,7 +113,7 @@ export default function CoupleGames({ standalone = false }: CoupleGamesProps) {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8 }}
           className="mb-12 text-center"
         >
