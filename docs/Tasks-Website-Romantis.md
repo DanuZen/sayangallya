@@ -147,12 +147,30 @@ Checklist ini disusun berurutan sesuai fase pengembangan. Kerjakan dari atas ke 
 
 ---
 
-## 🔵 Fase 12 — Polish Visual, Konten & Responsivitas Mobile (Rencana Selanjutnya)
+## 🔵 Fase 12 — Polish Visual Landing Page (Selesai)
 
-- [ ] **Peningkatan Visual Landing Page**: Memperbagus estetika visual landing page terutama pada efek latar belakang (*background texture, gradient layering, & atmospheric elements*).
-- [ ] **Persiapan Konten Utama**: Menyiapkan dan merapikan seluruh isi data asli untuk *Timeline* dan galeri foto *Captured Moments*.
-- [ ] **Optimasi Responsif Mobile Total**: Menerapkan dan menyempurnakan tata letak di semua halaman agar 100% responsif dan nyaman di perangkat mobile tanpa mengubah sedikit pun tampilan desktop & tablet yang sudah presisi.
-- [ ] **Penyelarasan & Polish Tambahan**: Melakukan audit performa visual, kecepatan muat gambar, serta pengisian konten tambahan untuk penyempurnaan akhir.
+- [x] **Peningkatan Visual Landing Page**: Memperbagus estetika visual landing page terutama pada efek latar belakang (*ambient rose/gold radial backdrop, sparkle bokeh particles, halo spotlight, & atmospheric layering*).
+
+---
+
+## 💗 Fase 13 — Magic UI Navigasi Dock, Confetti & Estetika Ruang Kita (Selesai)
+
+- [x] **Integrasi Magic UI MacOS Dock Navigation**: Membangun komponen navigasi ala MacOS (`components/ui/dock.tsx`) dengan fisika *spring magnification* di halaman privat `/ruang-kita`.
+- [x] **Proteksi Akses Pasiskode**: Menambahkan `PasscodeGuard` untuk memproteksi halaman `/ruang-kita` dengan kata kunci rahasia (`allyadanu` / `danuallya`).
+- [x] **Pembersihan Wadah Kartu Putih (*Borderless Paper Aesthetic*)**: Menghapus latar belakang kartu putih besar pada komponen `CoupleGames` dan `DateSpinner` agar elemen melayang murni (*floating*) di atas latar tekstur kertas romantis.
+- [x] **Penyusutan Border Radius Kartu (*Paper Corner*)**: Mengubah *border-radius* kartu polaroid dari `rounded-lg` menjadi `rounded-sm` untuk memberikan kesan sudut kertas cetak fisik yang tajam dan otentik.
+- [x] **Redesain Date Spinner (2 Warna Pink)**: Mengubah warna juring roda pemutar menjadi 2 warna berselang-seling yang anggun (Pink `#E88CA8` & Pink Pastel `#FCE7F3`) dengan tipografi serif *Playfair Display*.
+- [x] **Efek Magic UI Confetti**: Membawa library `canvas-confetti` dan komponen `components/ui/confetti.tsx` yang secara otomatis menyemburkan kembang api confetti romantis saat pemenang kencan terpilih.
+- [x] **Backdrop Modal Transparan (*Rose Glassmorphism*)**: Menghapus warna latar belakang modal hitam pekat dan menggantinya dengan *translucent rose glassmorphism backdrop* (`bg-[#2D0D17]/60 backdrop-blur-md`).
+- [x] **Penyatuan Desain Tombol Aksi (Pink Gradient Pill)**: Memperbarui seluruh tombol aksi bawah (`DateSpinner`, `LoveNotesBoard`, `BucketList`) menggunakan desain gradasi *Pink Romantis* yang menawan, ringkas, dan seragam.
+
+---
+
+## 🎯 Fase 14 — Persiapan Konten Utama & Optimasi Mobile Final (Rencana Selanjutnya)
+
+- [ ] **Persiapan Konten Utama**: Menyiapkan dan merapikan seluruh isi data asli untuk *Timeline*, *Love Notes*, *Bucket List*, dan galeri foto *Captured Moments*.
+- [ ] **Persiapan Background Music**: Mengintegrasikan musik latar yang *auto-play* dengan kontrol *mute/unmute* yang konsisten di seluruh halaman privat.
+- [ ] **Audit Responsivitas Mobile Total**: Menerapkan dan menyempurnakan tata letak di semua halaman agar 100% responsif dan nyaman di layar *smartphone* tanpa mengubah sedikit pun presisi tampilan *desktop*.
 
 ---
 
