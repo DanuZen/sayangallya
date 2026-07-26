@@ -32,36 +32,40 @@ export default function PaperPlaneNavigator() {
     50        // End: Lands precisely at 50% horizontal center at the top of Footer
   ]; 
   
-  // Y path: viewport-relative percentages (lands at 64% precisely on top divider line above Danu & Allya)
-  const yValues = [35, 35, 45, 45, 45, 55, 55, 55, 60, 60, 60, 62, 62, 62, 63, 63.5, 64, 64, 64, 64, 64];
+  // Y path: viewport-relative percentages (lands precisely at 51% above Danu & Allya in dark Footer)
+  const yValues = [35, 35, 45, 45, 45, 50, 51, 51, 51, 51, 51, 51, 51, 51, 51, 51, 51, 51, 51, 51, 51];
 
-  // Map scroll progress directly to coordinates (no spring = no lag)
+  // Map scroll progress directly to coordinates
   const xTarget = useTransform(scrollYProgress, xStops, xValues);
   const yTarget = useTransform(scrollYProgress, xStops, yValues);
+
+  // Smooth aerodynamic spring physics for paper plane flight
+  const smoothX = useSpring(xTarget, { stiffness: 65, damping: 22, mass: 0.6 });
+  const smoothY = useSpring(yTarget, { stiffness: 65, damping: 22, mass: 0.6 });
 
   // Shadow opacity fades to 0 when entering Footer (scroll progress > 0.88)
   const shadowOpacity = useTransform(scrollYProgress, [0, 0.85, 0.95, 1], [1, 1, 0, 0]);
 
-  // Position directly tracks scroll with NO spring delay — instant response.
-  const left = useTransform(xTarget, (x) => `${x}%`);
-  const top = useTransform(yTarget, (y) => `${y}%`);
+  // Position tracks smooth spring physics for silky aerodynamic flight
+  const left = useTransform(smoothX, (x) => `${x}%`);
+  const top = useTransform(smoothY, (y) => `${y}%`);
 
   // Rotation logic: calculate angle dynamically based on velocity/direction
   // Initial angle is ~172 degrees because the first movement is from x=85 to x=50 (left)
   const rotateRaw = useMotionValue(172);
-  const rotate = useSpring(rotateRaw, { stiffness: 80, damping: 20 });
+  const rotate = useSpring(rotateRaw, { stiffness: 60, damping: 22 });
 
   // ScaleY logic: mirror the plane when moving left (barrel roll)
   // Starts at -1 because initial movement is to the left
   const scaleYRaw = useMotionValue(-1);
-  const scaleY = useSpring(scaleYRaw, { stiffness: 80, damping: 20 });
+  const scaleY = useSpring(scaleYRaw, { stiffness: 60, damping: 22 });
 
   const prevPos = useRef({ x: 85, y: 8 });
 
   // Use animation frame to track real-time position and compute flight angle
   useAnimationFrame(() => {
-    const currentX = xTarget.get();
-    const currentY = yTarget.get();
+    const currentX = smoothX.get();
+    const currentY = smoothY.get();
     
     const dx = currentX - prevPos.current.x;
     const dy = currentY - prevPos.current.y;

@@ -51,7 +51,7 @@ export default function SecretMessages() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: false, margin: "-50px" }}
           transition={{ duration: 1, ease: "easeOut" }}
           className="mb-24 md:mb-32 relative flex flex-col items-center justify-center text-center pt-10"
         >
@@ -81,7 +81,7 @@ export default function SecretMessages() {
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
               className="font-dancing drop-shadow-sm absolute -bottom-4 right-0"
               style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)", lineHeight: 1, color: "#F3EAE3" }}

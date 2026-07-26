@@ -17,7 +17,7 @@ export default function ChapterNavigator() {
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="font-poppins text-xs md:text-sm tracking-[0.3em] uppercase text-maroon/50 mb-4"
         >
           Langkah Selanjutnya
@@ -25,7 +25,7 @@ export default function ChapterNavigator() {
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ delay: 0.1 }}
           className="font-playfair text-4xl md:text-5xl lg:text-6xl text-maroon font-bold"
         >
@@ -39,7 +39,7 @@ export default function ChapterNavigator() {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: false, margin: "-50px" }}
             transition={{ type: "spring", stiffness: 100 }}
             whileHover={{ y: -10, scale: 1.03 }}
             className="group relative flex flex-col items-center p-10 md:p-12 rounded-t-full rounded-b-3xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 border border-maroon/10 bg-gradient-to-b from-[#FDE2D0] to-[#E8DFF5]"

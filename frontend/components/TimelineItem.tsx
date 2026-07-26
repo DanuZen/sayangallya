@@ -31,46 +31,49 @@ export default function TimelineItem({ event, index }: Props) {
         <motion.div
           initial={{ opacity: 0, x: isEven ? -30 : 30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-50px" }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className={`w-16 h-[1px] bg-[#4A1E2C]/20 mb-6 ${isEven ? "ml-0" : "ml-auto"}`} />
-          <h4 className="font-playfair text-xl text-[#4A1E2C] mb-3 opacity-90">The Story</h4>
-          <p className="font-poppins text-base leading-relaxed text-[#4A1E2C]/70">
+          <div className={`w-16 h-[1px] bg-[#4A1E2C]/30 mb-6 ${isEven ? "ml-0" : "ml-auto"}`} />
+          <h4 className="font-playfair text-2xl font-bold text-[#3D1420] mb-3 drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">The Story</h4>
+          <p className="font-poppins text-lg font-medium leading-relaxed text-[#3D1420]/90 drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
             {event.description}
           </p>
         </motion.div>
       </div>
 
-      {/* Center dot — small maroon circle */}
-      <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-[#4A1E2C] border-2 border-[#F3EAE3] shadow-md z-10" />
+      {/* Center dot — small maroon circle with subtle pink ambient glow */}
+      <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-[#4A1E2C] border-2 border-[#F3EAE3] shadow-[0_0_12px_rgba(247,198,217,0.8)] z-10" />
 
       {/* Polaroid Column */}
       <div className="w-full md:w-5/12 ml-6 md:ml-0">
         <motion.div
           initial={{ opacity: 0, x: isEven ? 60 : -60 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: false, margin: "-50px" }}
           transition={{ duration: 0.8, delay: index * 0.15, type: "spring" }}
           className="w-full relative transition-transform duration-300 hover:scale-[1.03] hover:z-30"
         >
-          {/* Gentle Floating & Swaying Polaroid Frame (No popup trigger) */}
+          {/* Subtle Pink Backdrop Element Glow */}
+          <div className="absolute inset-0 rounded-xl bg-[#F7C6D9]/30 blur-xl transform scale-105 pointer-events-none z-0" />
+
+          {/* Gentle Floating & Swaying Polaroid Frame */}
           <div
-            className="polaroid-sway rounded-sm relative bg-[#FCFBF9] transition-shadow duration-500 hover:shadow-[0_25px_50px_rgba(74,30,44,0.2)]"
+            className="polaroid-sway rounded-sm relative bg-[#FCFBF9] transition-shadow duration-500 hover:shadow-[0_20px_45px_rgba(232,140,168,0.3)] z-10"
             style={{
               "--base-rot": `${tilt}deg`,
               animationDelay: `${index * 0.5}s`,
               animationDuration: `${9 + (index % 3) * 1.5}s`,
-              boxShadow: "0 15px 40px rgba(0,0,0,0.12), 4px 4px 0px rgba(0,0,0,0.04)",
+              boxShadow: "0 15px 35px rgba(0,0,0,0.1), 0 0 20px rgba(247,198,217,0.25)",
               padding: "12px 12px 76px", // Increased bottom padding to fit title perfectly
             } as React.CSSProperties}
           >
             {/* Mobile dot */}
-            <div className="md:hidden absolute -left-10 top-6 w-4 h-4 rounded-full bg-[#4A1E2C] border-2 border-[#F3EAE3] shadow-sm z-10" />
+            <div className="md:hidden absolute -left-10 top-6 w-4 h-4 rounded-full bg-[#4A1E2C] border-2 border-[#F3EAE3] shadow-[0_0_10px_rgba(247,198,217,0.8)] z-10" />
 
-            {/* Tape effect */}
-            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-14 h-7 rounded-sm rotate-1 z-10 opacity-70 shadow-sm"
-              style={{ backgroundColor: "rgba(230,220,210,0.9)", border: "1px solid rgba(74,30,44,0.1)" }} />
+            {/* Translucent cream tape effect */}
+            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-14 h-7 rounded-sm rotate-1 z-10 opacity-75 shadow-sm"
+              style={{ backgroundColor: "rgba(235, 225, 215, 0.85)", border: "1px solid rgba(74, 30, 44, 0.12)" }} />
 
             {/* Photo area */}
             {event.image_url ? (
@@ -107,11 +110,11 @@ export default function TimelineItem({ event, index }: Props) {
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="md:hidden mt-8 px-2"
         >
-          <div className="w-10 h-[1px] bg-[#4A1E2C]/20 mb-4" />
-          <p className="font-poppins text-sm leading-relaxed text-[#4A1E2C]/75">
+          <div className="w-10 h-[1px] bg-[#4A1E2C]/30 mb-4" />
+          <p className="font-poppins text-base font-medium leading-relaxed text-[#3D1420]/90 drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
             {event.description}
           </p>
         </motion.div>

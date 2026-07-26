@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { TornPaperEdgeTop, TornPaperEdgeBottom } from "@/components/TornPaperEdge";
 
 const photos = [
   { 
@@ -98,14 +99,41 @@ export default function PhotoGallery() {
   };
 
   return (
-    <section className="w-full bg-[#F3EAE3] py-20 md:py-32 relative">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="w-full py-20 md:py-32 relative overflow-hidden bg-[#FAF5EF]">
+      {/* Top & Bottom Seamless Gradient Fade Transitions */}
+      <div className="absolute top-0 left-0 right-0 h-24 md:h-36 gradient-fade-top z-20 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 md:h-36 gradient-fade-bottom z-20 pointer-events-none" />
+
+      {/* User's Authentic Crisp Crumpled Paper Backdrop & Gallery Photo Blend */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Image 
+          src="/kertas.jpg" 
+          alt="Crumpled Paper Backdrop" 
+          fill 
+          className="object-cover opacity-60 mix-blend-multiply" 
+          priority 
+        />
+        <Image 
+          src="/images/gallery-bg.png" 
+          alt="Gallery Photo Backdrop" 
+          fill 
+          className="object-cover opacity-20 mix-blend-overlay" 
+          priority 
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EF]/70 via-transparent to-[#FAF5EF]/70" />
+      </div>
+
+      {/* Romantic Pink Light Leak & Soft Ambient Spotlight Halo (Matches Hero) */}
+      <div className="absolute inset-0 light-leak-overlay opacity-60 pointer-events-none z-[1]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] md:w-[1000px] h-[850px] md:h-[1000px] rounded-full bg-radial from-[#F7C6D9]/35 via-[#FDE2D0]/20 to-transparent blur-3xl hidden md:block pointer-events-none z-0" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Header (Matches Timeline) */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: false, margin: "-50px" }}
           transition={{ duration: 1, ease: "easeOut" }}
           className="mb-16 md:mb-20 relative flex flex-col items-center justify-center text-center"
         >
@@ -135,7 +163,7 @@ export default function PhotoGallery() {
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
               className="font-dancing text-[#4A1E2C] drop-shadow-sm absolute -bottom-6 right-0"
               style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.5rem)", lineHeight: 1 }}
@@ -161,15 +189,18 @@ export default function PhotoGallery() {
               key={photo.id}
               initial={{ opacity: 0, scale: 0.8, y: 50 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: false, margin: "-50px" }}
               transition={{ duration: 0.8, delay: index * 0.15, type: "spring" }}
               className="relative z-30 group cursor-pointer select-none transition-transform duration-300 hover:scale-[1.04] hover:z-50"
             >
+              {/* Subtle Pink Element Backdrop Glow */}
+              <div className="absolute inset-0 rounded-xl bg-[#F7C6D9]/30 blur-xl transform scale-105 pointer-events-none z-0" />
+
               {/* Native Button with Gentle CSS Sway Animation (9-12s ultra peaceful cycle) */}
               <button
                 type="button"
                 onClick={() => setSelectedPhoto(photo)}
-                className="polaroid-sway block bg-[#FCFBF9] p-4 pb-6 shadow-[0_15px_35px_rgba(0,0,0,0.1)] rounded-[2px] transition-shadow duration-500 hover:shadow-[0_25px_50px_rgba(74,30,44,0.25)] w-[280px] md:w-[320px] text-left cursor-pointer border-0 outline-none relative z-10"
+                className="polaroid-sway block bg-[#FCFBF9] p-4 pb-6 shadow-[0_15px_35px_rgba(0,0,0,0.1)] rounded-[2px] transition-shadow duration-500 hover:shadow-[0_25px_50px_rgba(232,140,168,0.3)] w-[280px] md:w-[320px] text-left cursor-pointer border-0 outline-none relative z-10"
                 style={{
                   "--base-rot": `${photo.rotation}deg`,
                   animationDelay: `${index * 0.4}s`,

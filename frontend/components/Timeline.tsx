@@ -1,7 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import TimelineItem from "./TimelineItem";
 import { motion } from "framer-motion";
+import { TornPaperEdgeTop, TornPaperEdgeBottom } from "@/components/TornPaperEdge";
+
 // Dummy Data
 const dummyEvents = [
   {
@@ -29,21 +32,43 @@ const dummyEvents = [
 export default function Timeline() {
   return (
     <section
-      className="py-28 relative overflow-hidden"
+      className="py-28 relative overflow-hidden bg-[#FAF5EF]"
       id="timeline"
-      style={{ backgroundColor: "#F3EAE3" }}
     >
-      {/* Subtle paper texture */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-      }} />
+      {/* Top & Bottom Seamless Gradient Fade Transitions */}
+      <div className="absolute top-0 left-0 right-0 h-24 md:h-36 gradient-fade-top z-20 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 md:h-36 gradient-fade-bottom z-20 pointer-events-none" />
+
+      {/* User's Authentic Crisp Crumpled Paper Backdrop & Subtle Photo Blend */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Image 
+          src="/kertas.jpg" 
+          alt="Crumpled Paper Backdrop" 
+          fill 
+          className="object-cover opacity-60 mix-blend-multiply" 
+          priority 
+        />
+        <Image 
+          src="/images/timeline-bg.png" 
+          alt="Timeline Photo Backdrop" 
+          fill 
+          className="object-cover opacity-20 mix-blend-overlay" 
+          priority 
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EF]/70 via-transparent to-[#FAF5EF]/70" />
+      </div>
+
+      {/* Romantic Pink Light Leak & Ambient Backlight Halo (Matches Hero) */}
+      <div className="absolute inset-0 light-leak-overlay opacity-60 pointer-events-none z-[1]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] md:w-[950px] h-[700px] md:h-[950px] rounded-full bg-radial from-[#F7C6D9]/35 via-[#FDE2D0]/20 to-transparent blur-3xl hidden md:block pointer-events-none z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[4px] h-[75%] bg-gradient-to-b from-transparent via-[#E88CA8]/40 to-transparent blur-md hidden md:block pointer-events-none z-10" />
 
       <div className="container mx-auto px-6 max-w-5xl relative z-10">
         {/* Swan Agency–style stacked title */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: false, margin: "-50px" }}
           transition={{ duration: 1, ease: "easeOut" }}
           className="mb-24 md:mb-32 relative flex flex-col items-center justify-center text-center pt-10"
         >
@@ -73,7 +98,7 @@ export default function Timeline() {
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
               className="font-dancing text-[#4A1E2C] drop-shadow-sm absolute -bottom-4 right-0"
               style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)", lineHeight: 1 }}
