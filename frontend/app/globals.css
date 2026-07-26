@@ -23,12 +23,31 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: #4A1E2C #FAF5EF;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }
 
 body {
@@ -164,3 +183,133 @@ html.modal-open {
   animation: polaroidFloatSway 9s ease-in-out infinite;
   will-change: transform;
 }
+
+/* === LUXURY ATMOSPHERIC AMBIENT GLOWS (DESKTOP ENHANCEMENT) === */
+@keyframes ambientGlowPulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.08);
+  }
+}
+
+.ambient-glow-rose {
+  background: radial-gradient(circle, rgba(232, 140, 168, 0.22) 0%, rgba(243, 234, 227, 0) 70%);
+  animation: ambientGlowPulse 10s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.ambient-glow-gold {
+  background: radial-gradient(circle, rgba(253, 226, 208, 0.35) 0%, rgba(243, 234, 227, 0) 70%);
+  animation: ambientGlowPulse 14s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.ambient-glow-maroon {
+  background: radial-gradient(circle, rgba(74, 30, 44, 0.08) 0%, rgba(243, 234, 227, 0) 70%);
+  animation: ambientGlowPulse 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Sparkle / Bokeh particle animation */
+@keyframes floatingSparkle {
+  0% {
+    transform: translateY(0px) scale(0.8);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-18px) scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-36px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.sparkle-particle {
+  animation: floatingSparkle 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* === SEAMLESS GRADIENT TRANSITION UTILITIES === */
+
+/* Smooth Top Gradient Fade Layer */
+.gradient-fade-top {
+  background: linear-gradient(180deg, #FAF5EF 0%, rgba(250, 245, 239, 0) 100%);
+  pointer-events: none;
+}
+
+/* Smooth Bottom Gradient Fade Layer */
+.gradient-fade-bottom {
+  background: linear-gradient(180deg, rgba(250, 245, 239, 0) 0%, #FAF5EF 100%);
+  pointer-events: none;
+}
+
+/* Soft Submerged Photo Blend Overlay */
+.photo-bg-blend-soft {
+  background: linear-gradient(180deg, rgba(250, 245, 239, 0.92) 0%, rgba(243, 234, 227, 0.88) 50%, rgba(250, 245, 239, 0.94) 100%);
+}
+
+/* Shimmer Burgundy / Rose Gold Effect */
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.gold-shimmer-text {
+  background: linear-gradient(90deg, #4A1E2C 0%, #7A354A 30%, #E88CA8 50%, #7A354A 70%, #4A1E2C 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: goldShimmer 8s linear infinite;
+}
+
+/* Shimmer Gold/Rose Effect for DARK Backgrounds */
+.gold-shimmer-text-light {
+  background: linear-gradient(90deg, #FDE2D0 0%, #F7C6D9 25%, #FFFFFF 50%, #F7C6D9 75%, #FDE2D0 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: goldShimmer 6s linear infinite;
+  filter: drop-shadow(0 2px 12px rgba(247, 198, 217, 0.4));
+}
+
+/* Romantic Light Leak Overlay */
+.light-leak-overlay {
+  background: radial-gradient(circle at 80% 20%, rgba(247, 198, 217, 0.25) 0%, rgba(253, 226, 208, 0.15) 40%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Vignette Frame Overlay */
+.vignette-romantic {
+  box-shadow: inset 0 0 120px rgba(74, 30, 44, 0.12);
+  pointer-events: none;
+}
+
+/* === ROMANTIC SOFT PINK AMBIENT ELEMENT GLOW STYLES === */
+
+.pink-element-glow {
+  box-shadow: 0 10px 30px -5px rgba(247, 198, 217, 0.45), 0 0 15px rgba(232, 140, 168, 0.20);
+}
+
+.pink-subtle-glow {
+  box-shadow: 0 12px 35px -8px rgba(247, 198, 217, 0.40), 0 0 20px rgba(232, 140, 168, 0.18);
+}
+
+.pink-ambient-spotlight {
+  background: radial-gradient(circle at center, rgba(247, 198, 217, 0.35) 0%, rgba(232, 140, 168, 0.15) 50%, transparent 80%);
+  pointer-events: none;
+}
+
+
+

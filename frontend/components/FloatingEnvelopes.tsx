@@ -30,8 +30,8 @@ const messages = [
       "Jangan pernah berubah ya.",
       "— Selalu untukmu  ♡",
     ],
-    // Positioned right BELOW Polaroid 2 ("Our First Trip Together")
-    position: { top: "54%", left: "68%" },
+    // Positioned higher up near Polaroid 2
+    position: { top: "42%", left: "68%" },
     rotation: 12,
   },
   {
@@ -47,8 +47,8 @@ const messages = [
       "I love you.",
       "— Aku  ♡",
     ],
-    // Positioned right BELOW Polaroid 3 ("Valentine's Day")
-    position: { top: "72%", left: "22%" },
+    // Positioned further BELOW Polaroid 3 so it never covers the polaroid card
+    position: { top: "85%", left: "22%" },
     rotation: -8,
   },
 ];
@@ -141,18 +141,23 @@ export default function FloatingEnvelopes() {
           key={msg.id}
           className="absolute z-[80] cursor-pointer"
           style={msg.position}
-          initial={{ opacity: 0, scale: 0.4, rotate: msg.rotation - 20 }}
-          animate={{ opacity: 1, scale: 1, rotate: msg.rotation }}
-          transition={{ duration: 1.2, delay: 1.5 + idx * 0.4, type: "spring" }}
+          initial={{ opacity: 0, scale: 0.3, rotate: msg.rotation - 20, y: 30 }}
+          whileInView={{ opacity: 1, scale: 1, rotate: msg.rotation, y: 0 }}
+          viewport={{ once: false, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: idx * 0.15, type: "spring", stiffness: 100, damping: 15 }}
           onClick={() => handleOpenMessage(msg)}
           whileHover={{ scale: 1.1, zIndex: 90 }}
         >
+          {/* Subtle Pink Ambient Halo behind envelope */}
+          <div className="absolute inset-0 rounded-full bg-[#F7C6D9]/35 blur-lg transform scale-125 pointer-events-none z-0" />
+
           <motion.div
             animate={{
               y: [0, -12, 0],
               rotate: [msg.rotation, msg.rotation + 2.5, msg.rotation],
             }}
             transition={{ duration: 4 + idx * 0.8, repeat: Infinity, ease: "easeInOut" }}
+            className="relative z-10"
           >
             <MiniEnvelope id={msg.id} />
           </motion.div>

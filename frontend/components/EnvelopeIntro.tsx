@@ -49,7 +49,7 @@ export default function EnvelopeIntro({ onDone }: { onDone: () => void }) {
       onClick={handleTap}
       className="fixed inset-0 z-[110] flex flex-col items-center justify-center cursor-pointer select-none overflow-hidden"
     >
-      {/* ── Background photo + maroon overlay ── */}
+      {/* ── Background photo + romantic pink/rose overlay ── */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-bg.png"
@@ -62,31 +62,12 @@ export default function EnvelopeIntro({ onDone }: { onDone: () => void }) {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(160deg, rgba(58,18,28,0.82) 0%, rgba(74,30,44,0.70) 50%, rgba(48,14,22,0.88) 100%)",
+              "linear-gradient(160deg, rgba(85,25,48,0.82) 0%, rgba(135,45,75,0.68) 45%, rgba(95,30,58,0.88) 100%)",
           }}
         />
+        {/* Soft Pink Ambient Halo Spotlight */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[750px] h-[500px] md:h-[750px] rounded-full bg-radial from-[#F7C6D9]/35 via-[#E88CA8]/20 to-transparent blur-3xl pointer-events-none" />
       </div>
-
-      {/* ── Decorative feathers ── */}
-      {[
-        { style: { top: "8%",  left: "5%",  width: 56 }, r: -18, delay: 0   },
-        { style: { top: "12%", right: "6%", width: 44 }, r:  22, delay: 1.2 },
-        { style: { top: "72%", left: "4%",  width: 38 }, r: -10, delay: 0.6 },
-        { style: { top: "75%", right: "5%", width: 50 }, r:  15, delay: 2   },
-      ].map((f, i) => (
-        <motion.div
-          key={i}
-          className="absolute pointer-events-none"
-          style={{ ...f.style, opacity: 0.18, rotate: f.r }}
-          animate={{ y: [0, -14, 0], rotate: [f.r, f.r + 5, f.r] }}
-          transition={{ duration: 5 + i * 0.8, repeat: Infinity, delay: f.delay, ease: "easeInOut" }}
-        >
-          <svg viewBox="0 0 80 160" fill="#F3EAE3">
-            <path d="M40 0 C32 25 15 55 22 100 C27 128 40 160 40 160 C40 160 53 128 58 100 C65 55 48 25 40 0 Z" />
-            <path d="M40 15 C36 45 32 80 36 120 C40 105 44 70 40 15 Z" fill="rgba(74,30,44,0.2)" />
-          </svg>
-        </motion.div>
-      ))}
 
       {/* ── ENVELOPE + LETTER SCENE ── */}
       {/*

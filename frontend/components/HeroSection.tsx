@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import RelationshipTimer from "./RelationshipTimer";
+import RelationshipTimer from "@/components/RelationshipTimer";
+import { TornPaperEdgeBottom } from "@/components/TornPaperEdge";
 
 const polaroidsData = [
   { id: 0, title: "first date", img: "/images/hero-bg.png", tapeRotate: "-4deg" },
@@ -29,10 +30,25 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen w-full flex flex-col items-center bg-[#F3EAE3]" id="hero">
-      {/* Background Image with Cream Overlay */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <Image src="/images/hero-bg.png" alt="Background" fill className="object-cover opacity-15 grayscale" priority />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F3EAE3]/60 via-[#F3EAE3]/90 to-[#F3EAE3]" />
+      {/* Background Image with Authentic Crisp Crumpled Paper Overlay & Ambient Pink Halo */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <Image src="/kertas.jpg" alt="Paper Backdrop" fill className="object-cover opacity-75 mix-blend-multiply" priority />
+        <Image src="/images/hero-bg.png" alt="Background" fill className="object-cover opacity-15 mix-blend-overlay" priority />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EF]/35 via-[#F3EAE3]/40 to-[#FAF5EF]/60" />
+        <div className="absolute bottom-0 left-0 right-0 h-28 md:h-40 gradient-fade-bottom z-10" />
+        
+        {/* Romantic Light Leak Overlay */}
+        <div className="absolute inset-0 light-leak-overlay opacity-60" />
+
+        {/* Soft Radial Backlight Spotlight (Desktop Halo) */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] md:w-[900px] h-[650px] md:h-[900px] rounded-full bg-radial from-[#F7C6D9]/25 via-[#FDE2D0]/15 to-transparent blur-3xl hidden md:block" />
+
+        {/* Floating Sparkle Particles */}
+        <div className="absolute top-[20%] left-[15%] w-2 h-2 rounded-full bg-[#E88CA8] sparkle-particle hidden md:block" style={{ animationDelay: "0.2s" }} />
+        <div className="absolute top-[35%] right-[18%] w-2.5 h-2.5 rounded-full bg-[#FDE2D0] sparkle-particle hidden md:block" style={{ animationDelay: "1.5s" }} />
+        <div className="absolute top-[65%] left-[22%] w-1.5 h-1.5 rounded-full bg-[#E88CA8] sparkle-particle hidden md:block" style={{ animationDelay: "2.8s" }} />
+        <div className="absolute top-[75%] right-[25%] w-2 h-2 rounded-full bg-[#C5A8E0] sparkle-particle hidden md:block" style={{ animationDelay: "4.1s" }} />
+
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")` }} />
       </div>
 
@@ -47,7 +63,7 @@ export default function HeroSection() {
         <div className="flex flex-col items-center justify-center w-1/3 whitespace-nowrap">
           <div className="flex items-center gap-4 md:gap-5">
             <div className="w-8 md:w-12 h-[1px] bg-maroon/40 hidden md:block"></div>
-            <div className="font-playfair text-2xl md:text-4xl text-maroon tracking-[0.35em] font-bold">
+            <div className="font-playfair text-2xl md:text-4xl gold-shimmer-text tracking-[0.35em] font-bold">
               THE JOURNEY
             </div>
             <div className="w-8 md:w-12 h-[1px] bg-maroon/40 hidden md:block"></div>
@@ -198,8 +214,12 @@ export default function HeroSection() {
           transition={{ duration: 0.9, ease: "easeOut", delay: 1.1 }}
           className="relative w-full px-6 md:px-16 flex justify-center items-center z-30 mt-4 md:mt-8"
         >
-          <div className="w-full flex justify-center items-center pointer-events-auto">
-            <RelationshipTimer startDate="2023-09-20" />
+          <div className="w-full flex justify-center items-center pointer-events-auto relative">
+            {/* Subtle Pink Ambient Halo behind timer */}
+            <div className="absolute inset-0 max-w-2xl mx-auto rounded-full bg-[#F7C6D9]/25 blur-2xl pointer-events-none z-0" />
+            <div className="relative z-10">
+              <RelationshipTimer startDate="2023-09-20" />
+            </div>
           </div>
         </motion.div>
       </div>
